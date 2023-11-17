@@ -23,7 +23,7 @@
 extern int statusTraffic1;
 extern int statusTraffic2;
 
-void normalModeFunction();
-void setInitNormalModeFunction();
+void beginNormalMode();
+void runNormalMode();
 
 #endif /* INC_NORMALMODE_H_ */

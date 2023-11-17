@@ -11,19 +11,19 @@
 
 void blinkingYELLOW()
 {
-	controlSingleLed(TRAFFIC1, YELLOWADVANCEDMODE);
-	controlSingleLed(TRAFFIC2, YELLOWADVANCEDMODE);
+	controlSingleLed(TRAFFIC1, YELLOWTUNINGMODE);
+	controlSingleLed(TRAFFIC2, YELLOWTUNINGMODE);
 }
 
 void blinkingRED()
 {
-	controlSingleLed(TRAFFIC1, REDADVANCEDMODE);
-	controlSingleLed(TRAFFIC2, REDADVANCEDMODE);
+	controlSingleLed(TRAFFIC1, REDTUNINGMODE);
+	controlSingleLed(TRAFFIC2, REDTUNINGMODE);
 }
 void blinkingGREEN()
 {
-	controlSingleLed(TRAFFIC1, GREENADVANCEDMODE);
-	controlSingleLed(TRAFFIC2, GREENADVANCEDMODE);
+	controlSingleLed(TRAFFIC1, GREENTUNINGMODE);
+	controlSingleLed(TRAFFIC2, GREENTUNINGMODE);
 }
 void offAllSingLEDs()
 {

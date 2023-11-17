@@ -10,6 +10,7 @@
 #include <main.h>
 #include "deviceDriverSingleLed.h"
 #include "tuningMode.h"
+#include "softwareTimer.h"
 
 int statusTraffic1 = INIT1;
 int statusTraffic2 = INIT2;
@@ -21,12 +22,12 @@ int counterLedGreen2;
 int counterLedYellow1;
 int counterLedYellow2;
 
-void setInitNormalModeFunction()
+void initStatusNormalMode()
 {
 	statusTraffic1 = INIT1;
 	statusTraffic2 = INIT2;
 }
-void normalModeFunction()
+void runNormalMode()
 {
 	switch (statusTraffic1)
 	{
@@ -158,4 +159,15 @@ void normalModeFunction()
 	default:
 		break;
 	}
+}
+
+void beginNormalMode()
+{
+	offAllSingLEDs();
+	initStatusNormalMode();
+	runNormalMode();
+	setTimer2(100);
+	update7SEGBufferMode(1);
+	displayAll7Seg();
+	setTimer4(10);
 }

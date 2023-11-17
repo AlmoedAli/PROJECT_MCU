@@ -18,11 +18,11 @@
 
 int statusManualMode= INITMODE;
 
-void setInitManualModeFunction()
+void initStatusManualMode()
 {
 	statusManualMode= INITMODE;
 }
-void manualModeFunction()
+void runManualModeFunction()
 {
 	switch (statusManualMode) 
 	{
@@ -64,4 +64,10 @@ void manualModeFunction()
 		default:
 			break;
 	}
+}
+
+void beginManualMode()
+{
+	initStatusManualMode();
+	runManualModeFunction();
 }

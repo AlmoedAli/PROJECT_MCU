@@ -27,7 +27,7 @@ int durationLedYellow = 2;
 
 int statusTuningMode= INITMODE;
 
-void TuningModeFunction()
+void runTuningMode()
 {
     switch (statusTuningMode)
     {
@@ -80,12 +80,18 @@ void TuningModeFunction()
     }
 }
 
-void setInitTuningModeFunction()
+void initStatusTuningMode()
 {
     statusTuningMode= INITMODE;
 }
 
-void modifyTuningModeFuction()
+void beginTuningMode()
+{
+    initStatusTuningMode();
+    runTuningMode();
+}
+
+void modifyTuningMode()
 {
     switch (statusTuningMode)
     {
@@ -121,7 +127,7 @@ void modifyTuningModeFuction()
     }
 }
 
-void saveTuningModeFunction()
+void saveTuningMode()
 {
     if (tempDurationLedRed != tempDurationLedYellow + tempDurationLedGreen)
     {
@@ -149,5 +155,26 @@ void saveTuningModeFunction()
         durationLedRed = tempDurationLedRed;
         durationLedYellow = tempDurationLedYellow;
         setInitNormalModeFunction();
+    }
+}
+
+void animationTuningMode()
+{
+    switch (statusTuningMode)
+    {
+    case INITMODE:
+
+        break;
+    case RED:
+        blinkingRED();
+        break;
+    case YELLOW:
+        blinkingYELLOW();
+        break;
+    case GREEN:
+        blinkingGREEN();
+        break;
+    default:
+        break;
     }
 }

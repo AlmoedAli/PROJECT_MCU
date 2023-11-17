@@ -39,14 +39,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define INITMODE 0
-#define MODE1 1
-#define MODE2 2
-#define MODE3 3
-#define MODE4 4
 
 #define INITMODE 0
-#define AUTOMODE 1
+#define NORMALMODE 1
 #define MANUALMODE 2
 #define TUNINGMODE 3
 
@@ -62,7 +57,6 @@ TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 int modeStatus = INITMODE;
-int flagAdvancedMode = 0;
 /* USER CODE END PV */
 
 /* Priv
@@ -120,52 +114,29 @@ int main(void)
 	setTimer1(1);
 	while (1)
 	{
-		if (flag1== 1)
+		if (flag1== 1) // flag for getInputButton
 		{
+			setTimer1(10);
 			switch (getInputButton())
 			{
 				case BUTTON1SinglePress:
 					switch (modeStatus)
 					{
 						case INITMODE:
-							modeStatus= AUTOMODE;
-							offAllSingLEDs();
-							setInitNormalModeFunction();
-							normalModeFunction();
-							setTimer2(100);
-							update7SEGBufferMode(1);
-							displayAll7Seg();
-							setTimer4(10);
+							modeStatus= NORMALMODE;
+							beginNormalMode();
 							break;
-						case AUTOMODE:
-							modeStatus= AUTOMODE;
-							offAllSingLEDs();
-							setInitNormalModeFunction();
-							normalModeFunction();
-							setTimer2(100);
-							update7SEGBufferMode(1);
-							displayAll7Seg();
-							setTimer4(10);
+						case NORMALMODE:
+							modeStatus= NORMALMODE;
+							beginNormalMode();
 							break;
 						case MANUALMODE:
-							modeStatus= AUTOMODE;
-							offAllSingLEDs();
-							setInitNormalModeFunction();
-							normalModeFunction();
-							setTimer2(100);
-							update7SEGBufferMode(1);
-							displayAll7Seg();
-							setTimer4(10);
+							modeStatus= NORMALMODE;
+							beginNormalMode();
 							break;
 						case TUNINGMODE:
-							modeStatus= AUTOMODE;
-							offAllSingLEDs();
-							setInitNormalModeFunction();
-							normalModeFunction();
-							setTimer2(100);
-							update7SEGBufferMode(1);
-							displayAll7Seg();
-							setTimer4(10);
+							modeStatus= NORMALMODE;
+							beginNormalMode();
 							break;
 						default:
 							break;
@@ -176,22 +147,19 @@ int main(void)
 					{
 						case INITMODE:
 							modeStatus= MANUALMODE;
-							setInitManualModeFunction();
-							manualModeFunction();
+							beginManualMode();
 							break;
-						case AUTOMODE:
+						case NORMALMODE:
 							modeStatus= MANUALMODE;
-							setInitManualModeFunction();
-							manualModeFunction();
+							beginManualMode();
 							break;
 						case MANUALMODE:
 							modeStatus= MANUALMODE;
-							setInitManualModeFunction();
-							manualModeFunction();
+							beginManualMode();
+							break;
 						case TUNINGMODE:
 							modeStatus= MANUALMODE;
-							setInitManualModeFunction();
-							manualModeFunction();
+							beginManualMode();
 							break;
 						default:
 							break;
@@ -202,23 +170,19 @@ int main(void)
 					{
 						case INITMODE:
 							modeStatus= TUNINGMODE;
-							setInitTuningModeFunction();
-							TuningModeFunction();
+							beginTuningMode();
 							break;
-						case AUTOMODE:
+						case NORMALMODE:
 							modeStatus= TUNINGMODE;
-							setInitTuningModeFunction();
-							TuningModeFunction();
+							beginTuningMode();
 							break;
 						case MANUALMODE:
 							modeStatus= TUNINGMODE;
-							setInitTuningModeFunction();
-							TuningModeFunction();
+							beginTuningMode();
 							break;
 						case TUNINGMODE:
 							modeStatus= TUNINGMODE;
-							setInitTuningModeFunction();
-							TuningModeFunction();
+							beginTuningMode();
 							break;
 						default:
 							break;
@@ -227,20 +191,14 @@ int main(void)
 				case BUTTON1LongPress:
 					switch (modeStatus)
 					{
-						case AUTOMODE:
-							offAllSingLEDs();
-							setInitNormalModeFunction();
-							normalModeFunction();
-							setTimer2(100);
-							update7SEGBufferMode(1);
-							displayAll7Seg();
-							setTimer4(10);
+						case NORMALMODE:
+							beginNormalMode();
 							break;
 						case MANUALMODE:
-							manualModeFunction();
+							runManualModeFunction();
 							break;
 						case TUNINGMODE:
-							TuningModeFunction();
+							runTuningMode();
 							break;
 						default:
 							break;
@@ -249,11 +207,14 @@ int main(void)
 				case BUTTON2SinglePress:
 					switch (modeStatus)
 					{
+						case NORMALMODE:
+							beginNormalMode();
+							break;
 						case MANUALMODE:
-							manualModeFunction();
+							runManualModeFunction();
 							break;
 						case TUNINGMODE:
-							modifyTuningModeFuction();
+							modifyTuningMode();
 							break;
 						default:
 							break;
@@ -263,7 +224,7 @@ int main(void)
 					switch (modeStatus)
 					{
 						case TUNINGMODE:
-							saveTuningModeFunction();
+							saveTuningMode();
 							break;					
 						default:
 							break;
@@ -273,7 +234,7 @@ int main(void)
 					switch (modeStatus)
 					{
 						case TUNINGMODE:
-							modifyTuningModeFuction();
+							modifyTuningMode();
 							break;
 						default:
 							break;
@@ -283,140 +244,26 @@ int main(void)
 					break;
 			}
 		}
-		if (flag1 == 1) // flag for button
-		{
-			setTimer1(1);
-			getInput();
-			if (flagButton[0] == PRESS_STATE)
-			{
-				flagButton[0] = NORMAL_STATE;
-				switch (modeStatus)
-				{
-				case INITMODE:
-					modeStatus = MODE1;
-					flagAdvancedMode = 0;
-					tempDurationLedGreen = durationLedGreen;
-					tempDurationLedRed = durationLedRed;
-					tempDurationLedYellow = durationLedYellow;
-					offAllSingLEDs();
-					update7SEGBufferMode(MODE1);
-					normalModeFunction();
-					setTimer2(100);
-					displayAll7Seg();
-					setTimer4(20);
-					break;
-				case MODE1:
-					modeStatus = MODE2;
-					flagAdvancedMode = 1;
-					offAllSingLEDs();
-					blinkingRED();
-					setTimer3(50);
-					update7SEGBufferTraffic1(durationLedRed);
-					update7SEGBufferTraffic2(durationLedRed);
-					update7SEGBufferMode(MODE2);
-					break;
-				case MODE2:
-					modeStatus = MODE3;
-					flagAdvancedMode = 1;
-					offAllSingLEDs();
-					blinkingYELLOW();
-					setTimer3(50);
-					update7SEGBufferTraffic1(durationLedYellow);
-					update7SEGBufferTraffic2(durationLedYellow);
-					update7SEGBufferMode(MODE3);
-					break;
-				case MODE3:
-					modeStatus = MODE4;
-					flagAdvancedMode = 1;
-					offAllSingLEDs();
-					blinkingGREEN();
-					setTimer3(50);
-					update7SEGBufferTraffic1(durationLedGreen);
-					update7SEGBufferTraffic2(durationLedGreen);
-					update7SEGBufferMode(MODE4);
-					break;
-				case MODE4:
-					modeStatus = MODE1;
-					flagAdvancedMode = 0;
-					tempDurationLedGreen = durationLedGreen;
-					tempDurationLedRed = durationLedRed;
-					tempDurationLedYellow = durationLedYellow;
-					offAllSingLEDs();
-					update7SEGBufferMode(MODE1);
-					normalModeFunction();
-					setTimer2(100);
-					break;
-				default:
-					break;
-				}
-			}
-			
-			if (flagButton[2] == PRESS_STATE)
-			{
-				flagButton[2] = NORMAL_STATE;
-				if (tempDurationLedRed != tempDurationLedYellow + tempDurationLedGreen)
-				{
-					switch (modeStatus)
-					{
-					case MODE4:
-						update7SEGBufferTraffic1(88);
-						update7SEGBufferTraffic2(88);
-						update7SEGBufferMode(8);
-						onAllSingLEDs();
-						modeStatus = INITMODE;
-						break;
-					default:
-						break;
-					}
-				}
-				else
-				{
-					durationLedGreen = tempDurationLedGreen;
-					durationLedRed = tempDurationLedRed;
-					durationLedYellow = tempDurationLedYellow;
-					statusTraffic1 = INIT1;
-					statusTraffic2 = INIT2;
-					if (modeStatus == 1 || modeStatus == 0)
-					{
-						normalModeFunction();
-						setTimer2(1000);
-					}
-				}
-			}
-		}
-		if (flag2 == 1) // flag normal led
+		if (flag2 == 1) // flag for normalMode
 		{
 			setTimer2(100);
-			if (flagAdvancedMode == 0)
+			if (modeStatus == NORMALMODE)
 			{
-				normalModeFunction();
+				runNormalMode();
 			}
 		}
-		if (flag3 == 1) // flag for model modify
+		if (flag3 == 1) // flag for animationTuningMode
 		{
 			setTimer3(50);
-			if (flagAdvancedMode == 1)
+			if (modeStatus== TUNINGMODE)
 			{
-				switch (modeStatus)
-				{
-				case MODE2:
-					blinkingRED();
-					break;
-				case MODE3:
-					blinkingYELLOW();
-					break;
-				case MODE4:
-					blinkingGREEN();
-					break;
-				default:
-					break;
-				}
+				animationTuningMode();
 			}
 		}
-		if (flag4 == 1)
+		if (flag4 == 1)  // flag for scan7Seg
 		{
 			displayAll7Seg();
-			setTimer4(20);
+			setTimer4(10);
 		}
 
 		/* USER CODE END WHILE */

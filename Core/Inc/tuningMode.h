@@ -16,9 +16,10 @@ extern int tempDurationLedRed;
 extern int tempDurationLedGreen;
 extern int tempDurationLedYellow;
 
-void changeStatusTuningMode();
-void setInitTuningModeFunction();
-void modifyTuningModeFuction();
-void saveTuningModeFunction();
+void modifyTuningMode();
+void saveTuningMode();
+void runTuningMode();
+void beginTuningMode();
+void animationTuningMode();
 
 #endif /* INC_TUNINGMODE_H_ */

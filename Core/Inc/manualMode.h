@@ -8,7 +8,7 @@
 #ifndef INC_MANUALMODE_H_
 #define INC_MANUALMODE_H_
 
-void setInitManualModeFunction()
-void manualModeFunction();
+void runManualModeFunction();
+void beginManualMode();
 
 #endif /* INC_MANUALMODE_H_ */
