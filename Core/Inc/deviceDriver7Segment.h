@@ -10,7 +10,7 @@
 
 extern int led_buffer[5];
 
-void DisplayAll7Seg();
+void displayAll7Seg();
 void update7SEGBufferTraffic1(int time);
 void update7SEGBufferTraffic2(int time);
 void update7SEGBufferMode(int time);

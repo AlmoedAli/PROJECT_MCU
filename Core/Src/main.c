@@ -107,9 +107,6 @@ int main(void)
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
-	normalModeFunction();
-	setTimer2(100);
-	displayAll7Seg();
 	setTimer4(20);
 	setTimer1(1);
 	while (1)

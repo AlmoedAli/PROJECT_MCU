@@ -39,7 +39,7 @@ void runTuningMode()
             update7SEGBufferTraffic1(durationLedRed);
             update7SEGBufferTraffic2(durationLedRed);
             update7SEGBufferMode(3);
-            DisplayAll7Seg();
+            displayAll7Seg();
             setTimer4(10);
             break;
         case RED:
@@ -50,7 +50,7 @@ void runTuningMode()
             update7SEGBufferTraffic1(durationLedYellow);
             update7SEGBufferTraffic2(durationLedYellow);
             update7SEGBufferMode(3);
-            DisplayAll7Seg();
+            displayAll7Seg();
             setTimer4(10);
             break;
         case YELLOW:
@@ -61,7 +61,7 @@ void runTuningMode()
             update7SEGBufferTraffic1(durationLedGreen);
             update7SEGBufferTraffic2(durationLedGreen);
             update7SEGBufferMode(3);
-            DisplayAll7Seg();
+            displayAll7Seg();
             setTimer4(10);
             break;
         case GREEN:
@@ -72,7 +72,7 @@ void runTuningMode()
             update7SEGBufferTraffic1(durationLedRed);
             update7SEGBufferTraffic2(durationLedRed);
             update7SEGBufferMode(3);
-            DisplayAll7Seg();
+            displayAll7Seg();
             setTimer4(10);
             break;
         default:
@@ -154,7 +154,7 @@ void saveTuningMode()
         durationLedGreen = tempDurationLedGreen;
         durationLedRed = tempDurationLedRed;
         durationLedYellow = tempDurationLedYellow;
-        setInitNormalModeFunction();
+        initStatusNormalMode();
     }
 }
 

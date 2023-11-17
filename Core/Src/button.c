@@ -29,7 +29,7 @@ int checkEventButton(int indexButton)
 	switch (indexButton)
 	{
 		case 0:
-			switch (eventButtonDrop[i])
+			switch (eventButtonDrop[indexButton])
 			{
 				case 0:
 					resetAllButton();
@@ -52,7 +52,7 @@ int checkEventButton(int indexButton)
 					break;
 			}
 		case 1:
-			switch (eventButtonDrop[i])
+			switch (eventButtonDrop[indexButton])
 			{
 				case 0:
 					resetAllButton();

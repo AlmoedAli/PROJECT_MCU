@@ -20,6 +20,6 @@
 #define BUTTON2LongPress 7
 #define BUTTON2DoublePress 8
 
-void getInputButton();
+int getInputButton();
 
 #endif /* INC_BUTTON_H_ */

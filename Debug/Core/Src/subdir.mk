@@ -9,6 +9,7 @@ C_SRCS += \
 ../Core/Src/deviceDriver7Segment.c \
 ../Core/Src/deviceDriverSingleLed.c \
 ../Core/Src/main.c \
+../Core/Src/manualMode.c \
 ../Core/Src/normalMode.c \
 ../Core/Src/physical7Segment.c \
 ../Core/Src/physicalSingleLed.c \
@@ -17,13 +18,15 @@ C_SRCS += \
 ../Core/Src/stm32f1xx_it.c \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c \
-../Core/Src/system_stm32f1xx.c 
+../Core/Src/system_stm32f1xx.c \
+../Core/Src/tuningMode.c 
 
 OBJS += \
 ./Core/Src/button.o \
 ./Core/Src/deviceDriver7Segment.o \
 ./Core/Src/deviceDriverSingleLed.o \
 ./Core/Src/main.o \
+./Core/Src/manualMode.o \
 ./Core/Src/normalMode.o \
 ./Core/Src/physical7Segment.o \
 ./Core/Src/physicalSingleLed.o \
@@ -32,13 +35,15 @@ OBJS += \
 ./Core/Src/stm32f1xx_it.o \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
-./Core/Src/system_stm32f1xx.o 
+./Core/Src/system_stm32f1xx.o \
+./Core/Src/tuningMode.o 
 
 C_DEPS += \
 ./Core/Src/button.d \
 ./Core/Src/deviceDriver7Segment.d \
 ./Core/Src/deviceDriverSingleLed.d \
 ./Core/Src/main.d \
+./Core/Src/manualMode.d \
 ./Core/Src/normalMode.d \
 ./Core/Src/physical7Segment.d \
 ./Core/Src/physicalSingleLed.d \
@@ -47,7 +52,8 @@ C_DEPS += \
 ./Core/Src/stm32f1xx_it.d \
 ./Core/Src/syscalls.d \
 ./Core/Src/sysmem.d \
-./Core/Src/system_stm32f1xx.d 
+./Core/Src/system_stm32f1xx.d \
+./Core/Src/tuningMode.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
