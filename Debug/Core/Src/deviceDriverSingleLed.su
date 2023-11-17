@@ -1,0 +1,11 @@
+deviceDriverSingleLed.c:12:6:blinkingYELLOW	8	static
+deviceDriverSingleLed.c:18:6:blinkingRED	8	static
+deviceDriverSingleLed.c:23:6:blinkingGREEN	8	static
+deviceDriverSingleLed.c:28:6:offAllSingLEDs	8	static
+deviceDriverSingleLed.c:33:6:onAllSingLEDs	8	static
+deviceDriverSingleLed.c:38:6:onSingleRedTraffic1	8	static
+deviceDriverSingleLed.c:42:6:onSingleYellowTraffic1	8	static
+deviceDriverSingleLed.c:47:6:onSingleGreenTraffic1	8	static
+deviceDriverSingleLed.c:52:6:onSingleRedTraffic2	8	static
+deviceDriverSingleLed.c:56:6:onSingleYellowTraffic2	8	static
+deviceDriverSingleLed.c:61:6:onSingleGreenTraffic2	8	static

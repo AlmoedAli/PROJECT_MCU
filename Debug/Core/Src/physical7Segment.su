@@ -1,0 +1,3 @@
+physical7Segment.c:21:6:show7SEG	24	static
+physical7Segment.c:33:6:display	32	static
+physical7Segment.c:74:6:Scan7SEG	8	static
