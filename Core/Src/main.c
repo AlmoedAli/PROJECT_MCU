@@ -241,7 +241,7 @@ int main(void)
 					break;
 			}
 		}
-		if (flag2 == 1) // flag for normalMode
+		if (flag2 == 1) // flag for normalMode 
 		{
 			setTimer2(100);
 			if (modeStatus == NORMALMODE)

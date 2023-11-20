@@ -34,19 +34,19 @@ void runTuningMode()
         case INITMODE:
             statusTuningMode= RED;
             offAllSingLEDs();
-            blinkingRED();
-            setTimer3(50);
+            // blinkingRED();
+            // setTimer3(50);
             update7SEGBufferTraffic1(durationLedRed);
             update7SEGBufferTraffic2(durationLedRed);
             update7SEGBufferMode(3);
-            displayAll7Seg();
-            setTimer4(10);
+            // displayAll7Seg();
+            // setTimer4(10);
             break;
         case RED:
             statusTuningMode= YELLOW;
             offAllSingLEDs();
-            blinkingYELLOW();
-            setTimer3(50);
+            // blinkingYELLOW();
+            // setTimer3(50);
             update7SEGBufferTraffic1(durationLedYellow);
             update7SEGBufferTraffic2(durationLedYellow);
             update7SEGBufferMode(3);
@@ -56,24 +56,24 @@ void runTuningMode()
         case YELLOW:
             statusTuningMode= GREEN;
             offAllSingLEDs();
-            blinkingGREEN();
-            setTimer3(50);
+            // blinkingGREEN();
+            // setTimer3(50);
             update7SEGBufferTraffic1(durationLedGreen);
             update7SEGBufferTraffic2(durationLedGreen);
             update7SEGBufferMode(3);
-            displayAll7Seg();
-            setTimer4(10);
+            // displayAll7Seg();
+            // setTimer4(10);
             break;
         case GREEN:
             statusTuningMode= RED;
             offAllSingLEDs();
-            blinkingRED();
-            setTimer3(50);
+            // blinkingRED();
+            // setTimer3(50);
             update7SEGBufferTraffic1(durationLedRed);
             update7SEGBufferTraffic2(durationLedRed);
             update7SEGBufferMode(3);
-            displayAll7Seg();
-            setTimer4(10);
+            // displayAll7Seg();
+            // setTimer4(10);
             break;
         default:
             break;
@@ -163,7 +163,6 @@ void animationTuningMode()
     switch (statusTuningMode)
     {
     case INITMODE:
-
         break;
     case RED:
         blinkingRED();
