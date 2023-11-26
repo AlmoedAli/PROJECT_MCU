@@ -9,8 +9,8 @@
 #define INC_PHYSICALBUZZER_H_
 
 
-void buzzerOn();
-void buzzerOff();
+//void buzzerOn();
+//void buzzerOff();
 
 
 #endif /* INC_PHYSICALBUZZER_H_ */

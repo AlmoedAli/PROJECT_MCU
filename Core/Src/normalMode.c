@@ -70,6 +70,7 @@ void runNormalMode()
 				statusTraffic1 = STATUS1_3;
 				onSingleYellowTraffic1();
 				update7SEGBufferTraffic1(counterLedYellow1);
+				walkStatus = YELLOWON;
 			}
 			else
 			{

@@ -1,2 +1,0 @@
-../Core/Src/physicalBuzzer.c:11:6:buzzerOn	4	static
-../Core/Src/physicalBuzzer.c:15:6:buzzerOff	4	static

@@ -7,11 +7,6 @@
 
 
 #include "physicalBuzzer.h"
+#include "main.h"
 
-void buzzerOn(){
 
-}
-
-void buzzerOff(){
-
-}

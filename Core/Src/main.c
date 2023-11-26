@@ -212,6 +212,20 @@ void SCH_Init(void){
 void toggleLED(){
 	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 }
+int buzzerVal = 99;
+
+void buzzerOn(){
+	  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 0);
+//	  buzzerVal = buzzerVal - 10;
+//	  if(buzzerVal <= 0){
+//		  buzzerVal = 99;
+//	  }
+}
+
+void buzzerOff(){
+	buzzerVal = 99;
+	  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, buzzerVal);
+}
 /* USER CODE END 0 */
 
 /**
@@ -255,6 +269,7 @@ int main(void)
 	SCH_Add_Task(toggleLED, 1000, 1000);
 //	SCH_Add_Task(getInputButton, 10, 10)
 	setTimer1(100);
+	__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, buzzerVal);
   while (1)
   {
 //	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
@@ -264,6 +279,7 @@ int main(void)
 //	  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, i);
 //	  HAL_Delay(10);
 //	  }
+//	  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 99);
 	  if(flag1 == 1){
 		  setTimer1(100);
 		  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);

@@ -8,7 +8,7 @@
 #include "ledWalk.h"
 #include "main.h"
 #include "physical7SingleLed.h"
-#include "physicalBuzzer.h"
+//#include "physicalBuzzer.h"
 
 int walkStatus;
 int flagWalk;
@@ -20,6 +20,7 @@ void runLedWalkMode(){
 		WALKOFF();
 		break;
 	case GREENON:
+		buzzerOff();
 		WALKON();
 		break;
 	case YELLOWON:

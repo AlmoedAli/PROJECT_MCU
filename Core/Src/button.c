@@ -154,7 +154,7 @@ void getKeyInput() {
 			keyReg3 = keyReg2;
 			if( keyReg3 == PRESS_STATE ) {
 				flagWalk = 1;
-				setTimerWalk(200);
+				setTimerWalk(1000);
 			}
 		}
 	}
