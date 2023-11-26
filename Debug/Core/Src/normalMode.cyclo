@@ -1,0 +1,3 @@
+normalMode.c:26:6:initStatusNormalMode	1
+normalMode.c:31:6:runNormalMode	21
+normalMode.c:170:6:beginNormalMode	1

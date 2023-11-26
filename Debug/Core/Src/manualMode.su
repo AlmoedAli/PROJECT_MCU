@@ -1,0 +1,3 @@
+../Core/Src/manualMode.c:21:6:initStatusManualMode	4	static
+../Core/Src/manualMode.c:25:6:runManualModeFunction	8	static
+../Core/Src/manualMode.c:69:6:beginManualMode	8	static

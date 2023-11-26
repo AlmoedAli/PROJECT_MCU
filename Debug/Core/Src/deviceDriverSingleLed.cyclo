@@ -1,0 +1,11 @@
+deviceDriverSingleLed.c:12:6:blinkingYELLOW	1
+deviceDriverSingleLed.c:18:6:blinkingRED	1
+deviceDriverSingleLed.c:23:6:blinkingGREEN	1
+deviceDriverSingleLed.c:28:6:offAllSingLEDs	1
+deviceDriverSingleLed.c:33:6:onAllSingLEDs	1
+deviceDriverSingleLed.c:38:6:onSingleRedTraffic1	1
+deviceDriverSingleLed.c:42:6:onSingleYellowTraffic1	1
+deviceDriverSingleLed.c:47:6:onSingleGreenTraffic1	1
+deviceDriverSingleLed.c:52:6:onSingleRedTraffic2	1
+deviceDriverSingleLed.c:56:6:onSingleYellowTraffic2	1
+deviceDriverSingleLed.c:61:6:onSingleGreenTraffic2	1

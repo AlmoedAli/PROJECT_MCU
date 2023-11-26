@@ -1,0 +1,3 @@
+../Core/Src/physicalSingleLed.c:11:6:controlSingleLed	16	static
+../Core/Src/physicalSingleLed.c:102:6:WALKON	8	static
+../Core/Src/physicalSingleLed.c:106:6:WALKOFF	8	static
