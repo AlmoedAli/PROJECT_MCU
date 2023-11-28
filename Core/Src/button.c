@@ -1,7 +1,6 @@
 #include "button.h"
 #include "main.h"
 
-
 GPIO_TypeDef* buttonPort[3]= {button1_GPIO_Port, button2_GPIO_Port, button3_GPIO_Port};
 uint16_t buttonPin[3]= {button1_Pin, button2_Pin, button3_Pin};
 
@@ -29,7 +28,7 @@ int checkEventButton(int indexButton)
 	switch (indexButton)
 	{
 		case 0:
-			switch (eventButtonDrop[indexButton])
+			/*switch (eventButtonDrop[indexButton])
 			{
 				case 0:
 					resetAllButton();
@@ -50,9 +49,44 @@ int checkEventButton(int indexButton)
 				default:
 					resetAllButton();
 					break;
+			}*/
+			if (eventButtonPressed[indexButton]== 1)
+			{
+				if (eventButtonDrop[indexButton]== 1)
+				{
+					resetAllButton();
+					return BUTTON1SinglePress;
+				}
+				if (eventButtonDrop[indexButton]== 0)
+				{
+					resetAllButton();
+					return BUTTON1LongPress;
+				}
 			}
+			else
+			{
+				if (eventButtonPressed[indexButton]== 2)
+				{
+					resetAllButton();
+					return BUTTON1DoublePress;
+				}
+				else
+				{
+					if (eventButtonPressed[indexButton]== 3)
+					{
+						resetAllButton();
+						return BUTTON1TriplePress;
+					}
+					else
+					{
+						resetAllButton();
+						return NOBUTTON;
+					}
+				}
+			}
+			break;
 		case 1:
-			switch (eventButtonDrop[indexButton])
+			/*switch (eventButtonDrop[indexButton])
 			{
 				case 0:
 					resetAllButton();
@@ -70,18 +104,38 @@ int checkEventButton(int indexButton)
 					resetAllButton();
 					break;
 			}
-			break;
+			break;*/
+			if (eventButtonPressed[indexButton]== 1)
+			{
+				resetAllButton();
+				return BUTTON2SinglePress;
+			}
+			else
+			{
+				if (eventButtonPressed[indexButton]== 2)
+				{
+					resetAllButton();
+					return BUTTON2DoublePress;
+				}
+				else
+				{
+					resetAllButton();
+					return BUTTON2LongPress;
+				}
+			}
 		case 2:
 			resetAllButton();
+			return NOBUTTON;
 			break;
 		default:
 			resetAllButton();
+			return NOBUTTON;
 			break;
 	}
 }
 int getInputButton()
 {
-	for (int i= 0; i < 3; i++)
+	for (int i= 0; i < 2; i++)
 	{
 		state1Button[i]= state2Button[i];
 		state2Button[i]= state3Button[i];
@@ -136,5 +190,6 @@ int getInputButton()
 			}
 		}
 	}
+	return NOBUTTON;
 }
 

@@ -107,13 +107,15 @@ int main(void)
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
+	setTimer3(50);
 	setTimer4(20);
 	setTimer1(1);
+	/* USER CODE BEGIN WHILE */
 	while (1)
 	{
 		if (flag1== 1) // flag for getInputButton
 		{
-			setTimer1(10);
+			setTimer1(1);
 			switch (getInputButton())
 			{
 				case BUTTON1SinglePress:
@@ -222,7 +224,7 @@ int main(void)
 					{
 						case TUNINGMODE:
 							saveTuningMode();
-							break;					
+							break;
 						default:
 							break;
 					}
@@ -241,7 +243,7 @@ int main(void)
 					break;
 			}
 		}
-		if (flag2 == 1) // flag for normalMode 
+		if (flag2 == 1) // flag for normalMode
 		{
 			setTimer2(100);
 			if (modeStatus == NORMALMODE)

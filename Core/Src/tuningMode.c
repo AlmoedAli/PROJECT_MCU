@@ -50,8 +50,8 @@ void runTuningMode()
             update7SEGBufferTraffic1(durationLedYellow);
             update7SEGBufferTraffic2(durationLedYellow);
             update7SEGBufferMode(3);
-            displayAll7Seg();
-            setTimer4(10);
+//            displayAll7Seg();
+//            setTimer4(10);
             break;
         case YELLOW:
             statusTuningMode= GREEN;
@@ -154,6 +154,7 @@ void saveTuningMode()
         durationLedGreen = tempDurationLedGreen;
         durationLedRed = tempDurationLedRed;
         durationLedYellow = tempDurationLedYellow;
+//        initStatusNormalMode();
         initStatusNormalMode();
     }
 }

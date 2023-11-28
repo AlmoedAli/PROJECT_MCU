@@ -19,7 +19,8 @@
 #define BUTTON2SinglePress 6
 #define BUTTON2LongPress 7
 #define BUTTON2DoublePress 8
+#define NOBUTTON 9
 
 int getInputButton();
-
+void resetAllButton();
 #endif /* INC_BUTTON_H_ */

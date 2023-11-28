@@ -45,7 +45,7 @@ void runManualModeFunction()
 			update7SEGBufferMode(2);
 			offAllSingLEDs();
 			onSingleGreenTraffic1();
-			onSingleYellowTraffic2();
+			onSingleRedTraffic2();
 			break;
 		case GREENRED:
 			statusManualMode= YELLOWRED;
