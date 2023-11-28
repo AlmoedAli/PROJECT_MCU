@@ -1,4 +1,0 @@
-deviceDriver7Segment.c:11:6:update7SEGBuffer	5
-deviceDriver7Segment.c:31:6:update7SEGBufferTraffic1	1
-deviceDriver7Segment.c:36:6:update7SEGBufferTraffic2	1
-deviceDriver7Segment.c:41:6:update7SEGBufferMode	1

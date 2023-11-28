@@ -62,3 +62,17 @@ void onSingleGreenTraffic2()
 {
 	controlSingleLed(TRAFFIC2, GREENNORMALMODE);
 }
+
+void offSingleRedGreenWalk()
+{
+	controlSingleLed(TRAFFIC1, OFFLEDWALK);
+}
+void onGreenOffRedWalk()
+{
+	controlSingleLed(TRAFFIC1, ONGREENOFFREDWALK);
+}
+void onRedOffGreenWalk()
+{
+	controlSingleLed(TRAFFIC1, ONREDOFFGREENWALK);
+}
+

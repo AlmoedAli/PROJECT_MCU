@@ -18,8 +18,10 @@
 #define ON 7
 #define TRAFFIC1 8
 #define TRAFFIC2 9
+#define OFFLEDWALK 10
+#define ONGREENOFFREDWALK 11
+#define ONREDOFFGREENWALK 12
 
 void controlSingleLed(int orderTraffic, int statusLed);
-void WALKON();
-void WALKOFF();
+
 #endif /* INC_PHYSICAL7SINGLELED_H_ */

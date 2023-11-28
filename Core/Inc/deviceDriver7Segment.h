@@ -8,7 +8,7 @@
 #ifndef INC_DEVICEDRIVER7SEGMENT_H_
 #define INC_DEVICEDRIVER7SEGMENT_H_
 
-//extern int led_buffer[5];
+extern int led_buffer[5];
 
 void displayAll7Seg();
 void update7SEGBufferTraffic1(int time);

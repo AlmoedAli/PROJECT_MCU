@@ -10,12 +10,6 @@
 #include "deviceDriverSingleLed.h"
 #include "deviceDriver7Segment.h"
 
-#define INITMODE 0
-#define REDGREEN 1
-#define REDYELLOW 2
-#define GREENRED 3
-#define YELLOWRED 4
-
 int statusManualMode= INITMODE;
 
 void initStatusManualMode()
@@ -45,7 +39,7 @@ void runManualModeFunction()
 			update7SEGBufferMode(2);
 			offAllSingLEDs();
 			onSingleGreenTraffic1();
-			onSingleYellowTraffic2();
+			onSingleRedTraffic2();
 			break;
 		case GREENRED:
 			statusManualMode= YELLOWRED;
@@ -68,6 +62,7 @@ void runManualModeFunction()
 
 void beginManualMode()
 {
+	offSingleRedGreenWalk();
 	initStatusManualMode();
 	runManualModeFunction();
 }

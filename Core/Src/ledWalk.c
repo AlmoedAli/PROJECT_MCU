@@ -1,33 +1,58 @@
 /*
  * ledWalk.c
  *
- *  Created on: Nov 26, 2023
- *      Author: Acer
+ *  Created on: Nov 27, 2023
+ *      Author: TVB09
  */
 
+
 #include "ledWalk.h"
+#include "normalMode.h"
 #include "main.h"
 #include "physical7SingleLed.h"
-//#include "physicalBuzzer.h"
 
-int walkStatus;
-int flagWalk;
+int numberFreq;
+int statusTraffic1Button3Pressed;
 
-void runLedWalkMode(){
-	switch(walkStatus){
-	case REDON:
-		buzzerOff();
-		WALKOFF();
-		break;
-	case GREENON:
-		buzzerOff();
-		WALKON();
-		break;
-	case YELLOWON:
-		buzzerOn();
-		WALKOFF();
-		break;
-	default:
-		break;
-	}
+void ledWalkOperation()
+{
+    switch (statusTraffic1)
+    {
+    case REDNORMAL:
+
+    	switch (numberFreq)
+    	{
+			case 0:
+				controlSingleLed(TRAFFIC1, OFFLEDWALK);
+				break;
+			default:
+				controlSingleLed(TRAFFIC1, ONGREENOFFREDWALK);
+				break;
+		}
+        break;
+    case GREENNORMAL:
+    	switch (numberFreq)
+		{
+			case 0:
+				controlSingleLed(TRAFFIC1, OFFLEDWALK);
+				break;
+			default:
+				controlSingleLed(TRAFFIC1, ONREDOFFGREENWALK);
+				break;
+		}
+        break;
+    case YELLOWNORMAL:
+    	switch (numberFreq)
+		{
+			case 0:
+				controlSingleLed(TRAFFIC1, OFFLEDWALK);
+				break;
+			default:
+				controlSingleLed(TRAFFIC1, ONREDOFFGREENWALK);
+				break;
+		}
+        break;
+    default:
+        break;
+    }
 }

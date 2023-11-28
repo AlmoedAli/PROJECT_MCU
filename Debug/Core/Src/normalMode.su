@@ -1,3 +1,3 @@
-../Core/Src/normalMode.c:26:6:initStatusNormalMode	4	static
-../Core/Src/normalMode.c:31:6:runNormalMode	8	static
-../Core/Src/normalMode.c:171:6:beginNormalMode	8	static
+normalMode.c:26:6:initStatusNormalMode	4	static
+normalMode.c:31:6:runNormalMode	8	static
+normalMode.c:171:6:beginNormalMode	8	static

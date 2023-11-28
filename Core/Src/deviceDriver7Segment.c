@@ -7,7 +7,7 @@
 
 #include "deviceDriver7Segment.h"
 #include "physical7Segment.h"
-int led_buffer[5];
+
 void update7SEGBuffer(int time, int index_traffic)
 {
 	switch (index_traffic)
@@ -43,7 +43,7 @@ void update7SEGBufferMode(int time)
 	update7SEGBuffer(time, 3);
 }
 
-//void displayAll7Seg()
-//{
-//	Scan7SEG();
-//}
+void displayAll7Seg()
+{
+	Scan7SEG();
+}

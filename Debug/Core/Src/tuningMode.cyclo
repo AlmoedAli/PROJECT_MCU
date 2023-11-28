@@ -1,6 +1,0 @@
-tuningMode.c:30:6:runTuningMode	5
-tuningMode.c:83:6:initStatusTuningMode	1
-tuningMode.c:88:6:beginTuningMode	1
-tuningMode.c:94:6:modifyTuningMode	8
-tuningMode.c:130:6:saveTuningMode	3
-tuningMode.c:161:6:animationTuningMode	4

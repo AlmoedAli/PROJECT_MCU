@@ -11,6 +11,7 @@
 #include "deviceDriverSingleLed.h"
 #include "softwareTimer.h"
 #include "normalMode.h"
+#include "physical7SingleLed.h"
 
 int tempDurationLedRed = 7;
 int tempDurationLedGreen = 5;
@@ -21,9 +22,9 @@ int durationLedGreen = 5;
 int durationLedYellow = 2;
 
 #define INITMODE 0
-#define RED  1
-#define YELLOW 2
-#define GREEN 3
+#define REDTUNING  1
+#define YELLOWTUNING 2
+#define GREENTUNING 3
 
 int statusTuningMode= INITMODE;
 
@@ -32,43 +33,43 @@ void runTuningMode()
     switch (statusTuningMode)
     {
         case INITMODE:
-            statusTuningMode= RED;
+            statusTuningMode= REDTUNING;
             offAllSingLEDs();
-             blinkingRED();
-             setTimer3(50);
+            // blinkingRED();
+            // setTimer3(50);
             update7SEGBufferTraffic1(durationLedRed);
             update7SEGBufferTraffic2(durationLedRed);
             update7SEGBufferMode(3);
             // displayAll7Seg();
             // setTimer4(10);
             break;
-        case RED:
-            statusTuningMode= YELLOW;
+        case REDTUNING:
+            statusTuningMode= YELLOWTUNING;
             offAllSingLEDs();
-             blinkingYELLOW();
-             setTimer3(50);
+            // blinkingYELLOW();
+            // setTimer3(50);
             update7SEGBufferTraffic1(durationLedYellow);
             update7SEGBufferTraffic2(durationLedYellow);
             update7SEGBufferMode(3);
 //            displayAll7Seg();
-            setTimer4(10);
+//            setTimer4(10);
             break;
-        case YELLOW:
-            statusTuningMode= GREEN;
+        case YELLOWTUNING:
+            statusTuningMode= GREENTUNING;
             offAllSingLEDs();
-            blinkingGREEN();
-            setTimer3(50);
+            // blinkingGREEN();
+            // setTimer3(50);
             update7SEGBufferTraffic1(durationLedGreen);
             update7SEGBufferTraffic2(durationLedGreen);
             update7SEGBufferMode(3);
             // displayAll7Seg();
             // setTimer4(10);
             break;
-        case GREEN:
-            statusTuningMode= RED;
+        case GREENTUNING:
+            statusTuningMode= REDTUNING;
             offAllSingLEDs();
-             blinkingRED();
-             setTimer3(50);
+            // blinkingRED();
+            // setTimer3(50);
             update7SEGBufferTraffic1(durationLedRed);
             update7SEGBufferTraffic2(durationLedRed);
             update7SEGBufferMode(3);
@@ -87,6 +88,7 @@ void initStatusTuningMode()
 
 void beginTuningMode()
 {
+    offSingleRedGreenWalk();
     initStatusTuningMode();
     runTuningMode();
 }
@@ -95,7 +97,7 @@ void modifyTuningMode()
 {
     switch (statusTuningMode)
     {
-        case RED:
+        case REDTUNING:
             tempDurationLedRed++;
             if (tempDurationLedRed > 99)
             {
@@ -104,7 +106,7 @@ void modifyTuningMode()
             update7SEGBufferTraffic1(tempDurationLedRed);
             update7SEGBufferTraffic2(tempDurationLedRed);
             break;
-        case YELLOW:
+        case YELLOWTUNING:
             tempDurationLedYellow++;
             if (tempDurationLedYellow > 99)
             {
@@ -113,7 +115,7 @@ void modifyTuningMode()
             update7SEGBufferTraffic1(tempDurationLedYellow);
             update7SEGBufferTraffic2(tempDurationLedYellow);
             break;
-        case GREEN:
+        case GREENTUNING:
             tempDurationLedGreen++;
             if (tempDurationLedGreen > 99)
             {
@@ -133,7 +135,7 @@ void saveTuningMode()
     {
         switch (statusTuningMode)
         {
-            case GREEN:
+            case GREENTUNING:
                 update7SEGBufferTraffic1(88);
                 update7SEGBufferTraffic2(88);
                 update7SEGBufferMode(8);
@@ -154,7 +156,6 @@ void saveTuningMode()
         durationLedGreen = tempDurationLedGreen;
         durationLedRed = tempDurationLedRed;
         durationLedYellow = tempDurationLedYellow;
-        initStatusNormalMode();
     }
 }
 
@@ -164,13 +165,13 @@ void animationTuningMode()
     {
     case INITMODE:
         break;
-    case RED:
+    case REDTUNING:
         blinkingRED();
         break;
-    case YELLOW:
+    case YELLOWTUNING:
         blinkingYELLOW();
         break;
-    case GREEN:
+    case GREENTUNING:
         blinkingGREEN();
         break;
     default:

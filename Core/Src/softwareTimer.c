@@ -19,9 +19,6 @@ int flag3;
 int counter4;
 int flag4;
 
-int counterWalk;
-int flagWalkOff;
-
 void runTimer()
 {
 	if (counter1 > 0)
@@ -56,14 +53,6 @@ void runTimer()
 			flag4 = 1;
 		}
 	}
-	if(counterWalk > 0)
-	{
-		counterWalk--;
-		if(counterWalk <= 0)
-		{
-			flagWalkOff = 1;
-		}
-	}
 }
 
 void setTimer1(int duration)
@@ -88,10 +77,4 @@ void setTimer4(int duration)
 {
 	counter4 = duration;
 	flag4 = 0;
-}
-
-void setTimerWalk(int duration)
-{
-	counterWalk = duration;
-	flagWalkOff = 0;
 }

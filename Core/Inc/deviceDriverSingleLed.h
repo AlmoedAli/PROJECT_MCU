@@ -19,5 +19,8 @@ void onSingleGreenTraffic1();
 void onSingleRedTraffic2();
 void onSingleYellowTraffic2();
 void onSingleGreenTraffic2();
+void offSingleRedGreenWalk();
+void onGreenOffRedWalk();
+void onRedOffGreenWalk();
 
 #endif /* INC_DEVICEDRIVERSINGLELED_H_ */

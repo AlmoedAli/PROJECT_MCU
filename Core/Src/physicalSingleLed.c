@@ -49,6 +49,18 @@ void controlSingleLed(int orderTraffic, int statusLed)
 			HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
 			HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
 			break;
+		case ONGREENOFFREDWALK:
+			HAL_GPIO_WritePin(WALKGREEN_GPIO_Port, WALKGREEN_Pin, SET);
+			HAL_GPIO_WritePin(WALKRED_GPIO_Port, WALKRED_Pin, RESET);
+			break;
+		case OFFLEDWALK:
+			HAL_GPIO_WritePin(WALKGREEN_GPIO_Port, WALKGREEN_Pin, RESET);
+			HAL_GPIO_WritePin(WALKRED_GPIO_Port, WALKRED_Pin, RESET);
+			break;
+		case ONREDOFFGREENWALK:
+			HAL_GPIO_WritePin(WALKGREEN_GPIO_Port, WALKGREEN_Pin, RESET);
+			HAL_GPIO_WritePin(WALKRED_GPIO_Port, WALKRED_Pin, SET);
+			break;
 		default:
 			break;
 		}
@@ -98,12 +110,3 @@ void controlSingleLed(int orderTraffic, int statusLed)
 		break;
 	}
 }
-
-void WALKON(){
-	HAL_GPIO_WritePin(LED_WALK_GPIO_Port, LED_WALK_Pin, SET);
-}
-
-void WALKOFF(){
-	HAL_GPIO_WritePin(LED_WALK_GPIO_Port, LED_WALK_Pin, RESET);
-}
-

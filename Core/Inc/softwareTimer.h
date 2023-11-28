@@ -20,9 +20,6 @@ extern int flag3;
 extern int counter4;
 extern int flag4;
 
-extern int counterWalk;
-extern int flagWalkOff;
-
 void setTimer1(int duration);
 void setTimer2(int duration);
 void setTimer3(int duration);

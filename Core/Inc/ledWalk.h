@@ -1,22 +1,17 @@
 /*
  * ledWalk.h
  *
- *  Created on: Nov 26, 2023
- *      Author: Acer
+ *  Created on: Nov 27, 2023
+ *      Author: TVB09
  */
 
 #ifndef INC_LEDWALK_H_
-#define INC_LEDWAL
+#define INC_LEDWALK_H_
 
-#define REDON		1
-#define GREENON 	2
-#define YELLOWON 	3
+extern int numberFreq;
+extern int statusTraffic1Button3Pressed;
 
-extern int walkStatus;
-extern int flagWalk;
-
-void runLedWalkMode();
-
+void ledWalkOperation();
 
 
 #endif /* INC_LEDWALK_H_ */

@@ -17,10 +17,15 @@
 #define BUTTON1LongPress 5
 
 #define BUTTON2SinglePress 6
-#define BUTTON2LongPress 7
-#define BUTTON2DoublePress 8
+#define BUTTON2DoublePress 7
+#define BUTTON2LongPress 8
+
+#define BUTTON3SinglePress 9
+#define BUTTON3DoublePress 10
+#define BUTTON3LongPress 11
+
+#define NOBUTTON 12
 
 int getInputButton();
-void getKeyInput();
-
+void resetAllButton();
 #endif /* INC_BUTTON_H_ */
