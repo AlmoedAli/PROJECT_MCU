@@ -10,49 +10,87 @@
 #include "normalMode.h"
 #include "main.h"
 #include "physical7SingleLed.h"
+#include "manualMode.h"
 
 int numberFreq;
-int statusTraffic1Button3Pressed;
+int statusLedWalkButton3Press;
 
-void ledWalkOperation()
+void ledWalkOperationNormalMode()
 {
     switch (statusTraffic1)
     {
     case REDNORMAL:
-
-    	switch (numberFreq)
-    	{
-			case 0:
-				controlSingleLed(TRAFFIC1, OFFLEDWALK);
-				break;
-			default:
-				controlSingleLed(TRAFFIC1, ONGREENOFFREDWALK);
-				break;
-		}
+		if (numberFreq <= 0)
+			controlSingleLedWalk(OFFLEDWALK);
+		else
+			controlSingleLedWalk(ONGREENOFFREDWALK);
         break;
     case GREENNORMAL:
-    	switch (numberFreq)
-		{
-			case 0:
-				controlSingleLed(TRAFFIC1, OFFLEDWALK);
-				break;
-			default:
-				controlSingleLed(TRAFFIC1, ONREDOFFGREENWALK);
-				break;
-		}
+		if (numberFreq <= 0)
+			controlSingleLedWalk(OFFLEDWALK);
+		else
+			controlSingleLedWalk(ONREDOFFGREENWALK);
         break;
     case YELLOWNORMAL:
-    	switch (numberFreq)
-		{
-			case 0:
-				controlSingleLed(TRAFFIC1, OFFLEDWALK);
-				break;
-			default:
-				controlSingleLed(TRAFFIC1, ONREDOFFGREENWALK);
-				break;
-		}
+		if (numberFreq <= 0)
+			controlSingleLedWalk(OFFLEDWALK);
+		else	
+			controlSingleLedWalk(ONREDOFFGREENWALK);
         break;
     default:
         break;
     }
+}
+
+void ledWalkOperationManualMode()
+{
+	switch (statusManualMode)
+	{
+	case REDGREEN:
+		switch (numberFreq)
+		{
+		case 0:
+			controlSingleLedWalk(OFFLEDWALK);
+			break;
+		default:
+			controlSingleLedWalk(ONGREENOFFREDWALK);
+			break;
+		}
+		break;
+	case YELLOWRED:
+		switch (numberFreq)
+		{
+			case 0:
+				controlSingleLedWalk(OFFLEDWALK);
+				break;
+			default:
+				controlSingleLedWalk(ONREDOFFGREENWALK);
+				break;
+		}
+		break;
+	case GREENRED:
+		switch (numberFreq)
+		{
+			case 0:
+				controlSingleLedWalk(OFFLEDWALK);
+				break;
+			default:
+				controlSingleLedWalk(ONREDOFFGREENWALK);
+				break;
+		}
+		break;
+	case REDYELLOW:
+		switch (numberFreq)
+		{
+			case 0:
+				controlSingleLedWalk(OFFLEDWALK);
+				break;
+			default:
+				controlSingleLedWalk(ONGREENOFFREDWALK);
+				break;
+		}
+		break;
+	default:
+		break;
+	}
 }

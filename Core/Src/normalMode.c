@@ -46,8 +46,9 @@ void runNormalMode()
 			{
 				counterLedGreen1 = durationLedGreen;
 				statusTraffic1 = GREENNORMAL;
-				if (statusTraffic1== statusTraffic1Button3Pressed)
+				if (statusLedWalkButton3Press== statusTraffic1)
 					numberFreq= (numberFreq > 0)? numberFreq- 1: numberFreq;
+				ledWalkOperationNormalMode();
 				onSingleGreenTraffic1();
 				update7SEGBufferTraffic1(counterLedGreen1);
 			}
@@ -66,8 +67,9 @@ void runNormalMode()
 			{
 				counterLedYellow1 = durationLedYellow;
 				statusTraffic1 = YELLOWNORMAL;
-				if (statusTraffic1== statusTraffic1Button3Pressed)
+				if (statusLedWalkButton3Press== statusTraffic1)
 					numberFreq= (numberFreq > 0)? numberFreq- 1: numberFreq;
+				ledWalkOperationNormalMode();
 				onSingleYellowTraffic1();
 				update7SEGBufferTraffic1(counterLedYellow1);
 			}
@@ -86,8 +88,9 @@ void runNormalMode()
 			{
 				counterLedRed1 = durationLedRed;
 				statusTraffic1 = REDNORMAL;
-				if (statusTraffic1== statusTraffic1Button3Pressed)
+				if (statusLedWalkButton3Press== statusTraffic1)
 					numberFreq= (numberFreq > 0)? numberFreq- 1: numberFreq;
+				ledWalkOperationNormalMode();
 				onSingleRedTraffic1();
 				update7SEGBufferTraffic1(counterLedRed1);
 			}
@@ -115,9 +118,9 @@ void runNormalMode()
 			counterLedGreen2--;
 			if (counterLedGreen2 <= 0)
 			{
-				onSingleYellowTraffic2();
 				counterLedYellow2 = durationLedYellow;
 				statusTraffic2 = YELLOWNORMAL;
+				onSingleYellowTraffic2();
 				update7SEGBufferTraffic2(counterLedYellow2);
 			}
 			else
@@ -170,6 +173,7 @@ void runNormalMode()
 
 void beginNormalMode()
 {
+	numberFreq= 0;
 	offSingleRedGreenWalk();
 	offAllSingLEDs();
 	initStatusNormalMode();
@@ -178,4 +182,10 @@ void beginNormalMode()
 	update7SEGBufferMode(1);
 	displayAll7Seg();
 	setTimer4(10);
+}
+
+void beginWalkNormalMode()
+{
+	numberFreq= 3;
+	statusLedWalkButton3Press= statusTraffic1;
 }

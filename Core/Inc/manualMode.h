@@ -8,13 +8,16 @@
 #ifndef INC_MANUALMODE_H_
 #define INC_MANUALMODE_H_
 
-#define INITMODE 0
-#define REDGREEN 1
-#define REDYELLOW 2
-#define GREENRED 3
-#define YELLOWRED 4
+#define INITMODE 13
+#define REDGREEN 14
+#define REDYELLOW 15
+#define GREENRED 16
+#define YELLOWRED 17
+
+extern int statusManualMode;
 
 void runManualModeFunction();
 void beginManualMode();
+void beginWalkManualMode();
 
 #endif /* INC_MANUALMODE_H_ */

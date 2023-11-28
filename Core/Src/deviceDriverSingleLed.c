@@ -11,68 +11,68 @@
 
 void blinkingYELLOW()
 {
-	controlSingleLed(TRAFFIC1, YELLOWTUNINGMODE);
-	controlSingleLed(TRAFFIC2, YELLOWTUNINGMODE);
+	controlSingleLedTraffic(TRAFFIC1, YELLOWTUNINGMODE);
+	controlSingleLedTraffic(TRAFFIC2, YELLOWTUNINGMODE);
 }
 
 void blinkingRED()
 {
-	controlSingleLed(TRAFFIC1, REDTUNINGMODE);
-	controlSingleLed(TRAFFIC2, REDTUNINGMODE);
+	controlSingleLedTraffic(TRAFFIC1, REDTUNINGMODE);
+	controlSingleLedTraffic(TRAFFIC2, REDTUNINGMODE);
 }
 void blinkingGREEN()
 {
-	controlSingleLed(TRAFFIC1, GREENTUNINGMODE);
-	controlSingleLed(TRAFFIC2, GREENTUNINGMODE);
+	controlSingleLedTraffic(TRAFFIC1, GREENTUNINGMODE);
+	controlSingleLedTraffic(TRAFFIC2, GREENTUNINGMODE);
 }
 void offAllSingLEDs()
 {
-	controlSingleLed(TRAFFIC1, OFF);
-	controlSingleLed(TRAFFIC2, OFF);
+	controlSingleLedTraffic(TRAFFIC1, OFF);
+	controlSingleLedTraffic(TRAFFIC2, OFF);
 }
 void onAllSingLEDs()
 {
-	controlSingleLed(TRAFFIC1, ON);
-	controlSingleLed(TRAFFIC2, ON);
+	controlSingleLedTraffic(TRAFFIC1, ON);
+	controlSingleLedTraffic(TRAFFIC2, ON);
 }
 void onSingleRedTraffic1()
 {
-	controlSingleLed(TRAFFIC1, REDNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC1, REDNORMALMODE);
 }
 void onSingleYellowTraffic1()
 {
-	controlSingleLed(TRAFFIC1, YELLOWNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC1, YELLOWNORMALMODE);
 }
 
 void onSingleGreenTraffic1()
 {
-	controlSingleLed(TRAFFIC1, GREENNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC1, GREENNORMALMODE);
 }
 
 void onSingleRedTraffic2()
 {
-	controlSingleLed(TRAFFIC2, REDNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC2, REDNORMALMODE);
 }
 void onSingleYellowTraffic2()
 {
-	controlSingleLed(TRAFFIC2, YELLOWNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC2, YELLOWNORMALMODE);
 }
 
 void onSingleGreenTraffic2()
 {
-	controlSingleLed(TRAFFIC2, GREENNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC2, GREENNORMALMODE);
 }
 
 void offSingleRedGreenWalk()
 {
-	controlSingleLed(TRAFFIC1, OFFLEDWALK);
+	controlSingleLedWalk(OFFLEDWALK);
 }
 void onGreenOffRedWalk()
 {
-	controlSingleLed(TRAFFIC1, ONGREENOFFREDWALK);
+	controlSingleLedWalk(ONGREENOFFREDWALK);
 }
 void onRedOffGreenWalk()
 {
-	controlSingleLed(TRAFFIC1, ONREDOFFGREENWALK);
+	controlSingleLedWalk(ONREDOFFGREENWALK);
 }
 

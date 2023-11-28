@@ -8,7 +8,7 @@
 #include <main.h>
 #include "physical7SingleLed.h"
 
-void controlSingleLed(int orderTraffic, int statusLed)
+void controlSingleLedTraffic(int orderTraffic, int statusLed)
 {
 	switch (orderTraffic)
 	{
@@ -49,18 +49,7 @@ void controlSingleLed(int orderTraffic, int statusLed)
 			HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
 			HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
 			break;
-		case ONGREENOFFREDWALK:
-			HAL_GPIO_WritePin(WALKGREEN_GPIO_Port, WALKGREEN_Pin, SET);
-			HAL_GPIO_WritePin(WALKRED_GPIO_Port, WALKRED_Pin, RESET);
-			break;
-		case OFFLEDWALK:
-			HAL_GPIO_WritePin(WALKGREEN_GPIO_Port, WALKGREEN_Pin, RESET);
-			HAL_GPIO_WritePin(WALKRED_GPIO_Port, WALKRED_Pin, RESET);
-			break;
-		case ONREDOFFGREENWALK:
-			HAL_GPIO_WritePin(WALKGREEN_GPIO_Port, WALKGREEN_Pin, RESET);
-			HAL_GPIO_WritePin(WALKRED_GPIO_Port, WALKRED_Pin, SET);
-			break;
+
 		default:
 			break;
 		}
@@ -108,5 +97,26 @@ void controlSingleLed(int orderTraffic, int statusLed)
 		break;
 	default:
 		break;
+	}
+}
+
+void controlSingleLedWalk(int statusLed)
+{
+	switch (statusLed)
+	{
+		case ONGREENOFFREDWALK:
+			HAL_GPIO_WritePin(WALKGREEN_GPIO_Port, WALKGREEN_Pin, SET);
+			HAL_GPIO_WritePin(WALKRED_GPIO_Port, WALKRED_Pin, RESET);
+			break;
+		case OFFLEDWALK:
+			HAL_GPIO_WritePin(WALKGREEN_GPIO_Port, WALKGREEN_Pin, RESET);
+			HAL_GPIO_WritePin(WALKRED_GPIO_Port, WALKRED_Pin, RESET);
+			break;
+		case ONREDOFFGREENWALK:
+			HAL_GPIO_WritePin(WALKGREEN_GPIO_Port, WALKGREEN_Pin, RESET);
+			HAL_GPIO_WritePin(WALKRED_GPIO_Port, WALKRED_Pin, SET);
+			break;
+		default:
+			break;
 	}
 }

@@ -28,7 +28,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/softwareTimer.h ../Core/Inc/button.h \
- ../Core/Inc/normalMode.h ../Core/Inc/manualMode.h \
+ ../Core/Inc/normalMode.h ../Core/Inc/deviceDriverSingleLed.h \
+ ../Core/Inc/deviceDriver7Segment.h ../Core/Inc/manualMode.h \
  ../Core/Inc/tuningMode.h ../Core/Inc/ledWalk.h
 
 ../Core/Inc/main.h:
@@ -94,6 +95,10 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/button.h:
 
 ../Core/Inc/normalMode.h:
+
+../Core/Inc/deviceDriverSingleLed.h:
+
+../Core/Inc/deviceDriver7Segment.h:
 
 ../Core/Inc/manualMode.h:
 

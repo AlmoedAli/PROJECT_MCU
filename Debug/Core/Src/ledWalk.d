@@ -28,7 +28,7 @@ Core/Src/ledWalk.o: ../Core/Src/ledWalk.c ../Core/Inc/ledWalk.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/physical7SingleLed.h
+ ../Core/Inc/physical7SingleLed.h ../Core/Inc/manualMode.h
 
 ../Core/Inc/ledWalk.h:
 
@@ -93,3 +93,5 @@ Core/Src/ledWalk.o: ../Core/Src/ledWalk.c ../Core/Inc/ledWalk.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
 ../Core/Inc/physical7SingleLed.h:
+
+../Core/Inc/manualMode.h:

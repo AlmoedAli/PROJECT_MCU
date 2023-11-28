@@ -9,9 +9,9 @@
 #define INC_LEDWALK_H_
 
 extern int numberFreq;
-extern int statusTraffic1Button3Pressed;
+extern int statusLedWalkButton3Press;
 
-void ledWalkOperation();
-
+void ledWalkOperationNormalMode();
+void ledWalkOperationManualMode();
 
 #endif /* INC_LEDWALK_H_ */

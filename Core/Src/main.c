@@ -26,8 +26,8 @@
 #include "softwareTimer.h"
 #include "button.h"
 #include "normalMode.h"
-//#include "deviceDriverSingleLed.h"
-//#include "deviceDriver7Segment.h"
+#include "deviceDriverSingleLed.h"
+#include "deviceDriver7Segment.h"
 #include "manualMode.h"
 #include "tuningMode.h"
 #include "ledWalk.h"
@@ -41,7 +41,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define INITMODE 0
+ #define INITMODES 0
 #define NORMALMODE 1
 #define MANUALMODE 2
 #define TUNINGMODE 3
@@ -60,7 +60,7 @@ TIM_HandleTypeDef htim3;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-int modeStatus = INITMODE;
+int modeStatus = INITMODES;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -146,6 +146,9 @@ int main(void)
 						case TUNINGMODE:
 							runTuningMode();
 							break;
+						case INITMODES:
+							offAllSingLEDs();
+							break;
 						default:
 							break;
 					}
@@ -172,6 +175,9 @@ int main(void)
 						case TUNINGMODE:
 							saveTuningMode();
 							break;
+						case INITMODES:
+							offAllSingLEDs();
+							break;
 						default:
 							break;
 					}
@@ -182,6 +188,9 @@ int main(void)
 						case TUNINGMODE:
 							modifyTuningMode();
 							break;
+						case INITMODES:
+							offAllSingLEDs();
+							break;
 						default:
 							break;
 					}
@@ -190,13 +199,20 @@ int main(void)
 					switch (modeStatus)
 					{
 						case NORMALMODE:
-							numberFreq= 3;
-							statusTraffic1Button3Pressed= statusTraffic1;
-							ledWalkOperation();
+							beginWalkNormalMode();
+							ledWalkOperationNormalMode();
+							break;
+						case MANUALMODE:
+							beginWalkManualMode();
+							ledWalkOperationManualMode();
 							break;
 						default:
 							break;
 					}
+					break;
+				case BUTTON3DoublePress:
+					offAllSingLEDs();
+					break;
 				default:
 					break;
 			}
@@ -207,7 +223,7 @@ int main(void)
 			if (modeStatus == NORMALMODE)
 			{
 				runNormalMode();
-				ledWalkOperation();
+				ledWalkOperationNormalMode();
 			}
 		}
 		if (flag3 == 1) // flag for animationTuningMode

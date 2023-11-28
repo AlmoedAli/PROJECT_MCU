@@ -8,16 +8,16 @@
 #ifndef INC_NORMALMODE_H_
 #define INC_NORMALMODE_H_
 
-#define INIT 0
-#define	REDNORMAL 1
-#define GREENNORMAL 2
-#define YELLOWNORMAL 3
+#define INIT 18
+#define	REDNORMAL 19
+#define GREENNORMAL 20
+#define YELLOWNORMAL 21
 
 extern int statusTraffic1;
 extern int statusTraffic2;
-extern int numberFreq;
 
 void beginNormalMode();
 void runNormalMode();
+void beginWalkNormalMode();
 
 #endif /* INC_NORMALMODE_H_ */

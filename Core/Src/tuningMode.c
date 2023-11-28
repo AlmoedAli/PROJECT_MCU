@@ -12,13 +12,14 @@
 #include "softwareTimer.h"
 #include "normalMode.h"
 #include "physical7SingleLed.h"
+#include "ledWalk.h"
 
 int tempDurationLedRed = 7;
 int tempDurationLedGreen = 5;
 int tempDurationLedYellow = 2;
 
-int durationLedRed = 7;
-int durationLedGreen = 5;
+int durationLedRed = 5;
+int durationLedGreen = 3;
 int durationLedYellow = 2;
 
 #define INITMODE 0
@@ -88,6 +89,7 @@ void initStatusTuningMode()
 
 void beginTuningMode()
 {
+	numberFreq= 0;
     offSingleRedGreenWalk();
     initStatusTuningMode();
     runTuningMode();
