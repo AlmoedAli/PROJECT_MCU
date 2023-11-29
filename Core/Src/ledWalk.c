@@ -7,10 +7,9 @@
 
 
 #include "ledWalk.h"
-#include "normalMode.h"
-#include "main.h"
-#include "physical7SingleLed.h"
+#include "deviceDriverSingleLed.h"
 #include "manualMode.h"
+#include "normalMode.h"
 
 int numberFreq;
 int statusLedWalkButton3Press;
@@ -21,21 +20,21 @@ void ledWalkOperationNormalMode()
     {
     case REDNORMAL:
 		if (numberFreq <= 0)
-			controlSingleLedWalk(OFFLEDWALK);
+			offSingleRedGreenWalk();
 		else
-			controlSingleLedWalk(ONGREENOFFREDWALK);
+			onGreenOffRedWalk();
         break;
     case GREENNORMAL:
 		if (numberFreq <= 0)
-			controlSingleLedWalk(OFFLEDWALK);
+			offSingleRedGreenWalk();
 		else
-			controlSingleLedWalk(ONREDOFFGREENWALK);
+			onRedOffGreenWalk();
         break;
     case YELLOWNORMAL:
 		if (numberFreq <= 0)
-			controlSingleLedWalk(OFFLEDWALK);
+			offSingleRedGreenWalk();
 		else	
-			controlSingleLedWalk(ONREDOFFGREENWALK);
+			onRedOffGreenWalk();
         break;
     default:
         break;
@@ -46,49 +45,29 @@ void ledWalkOperationManualMode()
 {
 	switch (statusManualMode)
 	{
-	case REDGREEN:
-		switch (numberFreq)
-		{
-		case 0:
-			controlSingleLedWalk(OFFLEDWALK);
-			break;
-		default:
-			controlSingleLedWalk(ONGREENOFFREDWALK);
-			break;
-		}
+	case REDGREENMANUAL:
+		if (numberFreq <= 0)
+			offSingleRedGreenWalk();
+		else	
+			onGreenOffRedWalk();
 		break;
-	case YELLOWRED:
-		switch (numberFreq)
-		{
-			case 0:
-				controlSingleLedWalk(OFFLEDWALK);
-				break;
-			default:
-				controlSingleLedWalk(ONREDOFFGREENWALK);
-				break;
-		}
+	case YELLOWREDMANUAL:
+		if (numberFreq <= 0)
+			offSingleRedGreenWalk();
+		else
+			onRedOffGreenWalk();
 		break;
-	case GREENRED:
-		switch (numberFreq)
-		{
-			case 0:
-				controlSingleLedWalk(OFFLEDWALK);
-				break;
-			default:
-				controlSingleLedWalk(ONREDOFFGREENWALK);
-				break;
-		}
+	case GREENREDMANUAL:
+		if (numberFreq <= 0)
+			offSingleRedGreenWalk();
+		else
+			onRedOffGreenWalk();
 		break;
-	case REDYELLOW:
-		switch (numberFreq)
-		{
-			case 0:
-				controlSingleLedWalk(OFFLEDWALK);
-				break;
-			default:
-				controlSingleLedWalk(ONGREENOFFREDWALK);
-				break;
-		}
+	case REDYELLOWMANUAL:
+		if (numberFreq <= 0)
+			offSingleRedGreenWalk();
+		else
+			onGreenOffRedWalk();
 		break;
 	default:
 		break;

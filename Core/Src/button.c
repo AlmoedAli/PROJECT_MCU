@@ -204,6 +204,7 @@ int checkEventButton(int indexButton)
 			break;
 	}
 }
+
 int getInputButton()
 {
 	for (int i= 0; i < 3; i++)

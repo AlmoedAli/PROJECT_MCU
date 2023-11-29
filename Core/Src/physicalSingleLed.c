@@ -15,28 +15,28 @@ void controlSingleLedTraffic(int orderTraffic, int statusLed)
 	case TRAFFIC1:
 		switch (statusLed)
 		{
-		case REDNORMALMODE:
+		case REDNORMAL:
 			HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, SET);
 			HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, RESET);
 			HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, RESET);
 			break;
-		case GREENNORMALMODE:
+		case GREENNORMAL:
 			HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, RESET);
 			HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, RESET);
 			HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
 			break;
-		case YELLOWNORMALMODE:
+		case YELLOWNORMAL:
 			HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, RESET);
 			HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
 			HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, RESET);
 			break;
-		case REDTUNINGMODE:
+		case REDTUNING:
 			HAL_GPIO_TogglePin(RED1_GPIO_Port, RED1_Pin);
 			break;
-		case YELLOWTUNINGMODE:
+		case YELLOWTUNING:
 			HAL_GPIO_TogglePin(YELLOW1_GPIO_Port, YELLOW1_Pin);
 			break;
-		case GREENTUNINGMODE:
+		case GREENTUNING:
 			HAL_GPIO_TogglePin(GREEN1_GPIO_Port, GREEN1_Pin);
 			break;
 		case OFF:
@@ -49,7 +49,6 @@ void controlSingleLedTraffic(int orderTraffic, int statusLed)
 			HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
 			HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
 			break;
-
 		default:
 			break;
 		}
@@ -57,28 +56,28 @@ void controlSingleLedTraffic(int orderTraffic, int statusLed)
 	case TRAFFIC2:
 		switch (statusLed)
 		{
-		case REDNORMALMODE:
+		case REDNORMAL:
 			HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, SET);
 			HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, RESET);
 			HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, RESET);
 			break;
-		case GREENNORMALMODE:
+		case GREENNORMAL:
 			HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, RESET);
 			HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, RESET);
 			HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, SET);
 			break;
-		case YELLOWNORMALMODE:
+		case YELLOWNORMAL:
 			HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, RESET);
 			HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, SET);
 			HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, RESET);
 			break;
-		case REDTUNINGMODE:
+		case REDTUNING:
 			HAL_GPIO_TogglePin(RED2_GPIO_Port, RED2_Pin);
 			break;
-		case YELLOWTUNINGMODE:
+		case YELLOWTUNING:
 			HAL_GPIO_TogglePin(YELLOW2_GPIO_Port, YELLOW2_Pin);
 			break;
-		case GREENTUNINGMODE:
+		case GREENTUNING:
 			HAL_GPIO_TogglePin(GREEN2_GPIO_Port, GREEN2_Pin);
 			break;
 		case OFF:

@@ -28,4 +28,5 @@
 
 int getInputButton();
 void resetAllButton();
+
 #endif /* INC_BUTTON_H_ */

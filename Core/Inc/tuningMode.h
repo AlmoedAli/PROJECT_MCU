@@ -8,14 +8,6 @@
 #ifndef INC_TUNINGMODE_H_
 #define INC_TUNINGMODE_H_
 
-extern int durationLedRed;
-extern int durationLedGreen;
-extern int durationLedYellow;
-
-extern int tempDurationLedRed;
-extern int tempDurationLedGreen;
-extern int tempDurationLedYellow;
-
 void modifyTuningMode();
 void saveTuningMode();
 void runTuningMode();

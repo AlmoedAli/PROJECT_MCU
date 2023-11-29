@@ -8,11 +8,11 @@
 #ifndef INC_MANUALMODE_H_
 #define INC_MANUALMODE_H_
 
-#define INITMODE 13
-#define REDGREEN 14
-#define REDYELLOW 15
-#define GREENRED 16
-#define YELLOWRED 17
+#define INITMANUAL 0
+#define REDGREENMANUAL 1
+#define REDYELLOWMANUAL 2
+#define GREENREDMANUAL 3
+#define YELLOWREDMANUAL 4
 
 extern int statusManualMode;
 

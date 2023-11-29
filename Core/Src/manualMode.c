@@ -11,25 +11,25 @@
 #include "deviceDriver7Segment.h"
 #include "ledWalk.h"
 
-int statusManualMode= INITMODE;
+int statusManualMode= INITMANUAL;
 
 void initStatusManualMode()
 {
-	statusManualMode= INITMODE;
+	statusManualMode= INITMANUAL;
 }
 void runManualModeFunction()
 {
 	switch (statusManualMode) 
 	{
-		case INITMODE:
-			statusManualMode= REDGREEN;
+		case INITMANUAL:
+			statusManualMode= REDGREENMANUAL;
 			update7SEGBufferMode(2);
 			offAllSingLEDs();
 			onSingleRedTraffic1();
 			onSingleGreenTraffic2();
 			break;
-		case REDGREEN:
-			statusManualMode= REDYELLOW;
+		case REDGREENMANUAL:
+			statusManualMode= REDYELLOWMANUAL;
 			if (statusManualMode== statusLedWalkButton3Press)
 				numberFreq= (numberFreq > 0)? numberFreq-1 :numberFreq;
 			ledWalkOperationManualMode();
@@ -37,8 +37,8 @@ void runManualModeFunction()
 			onSingleRedTraffic1();
 			onSingleYellowTraffic2();
 			break;
-		case REDYELLOW:
-			statusManualMode= GREENRED;
+		case REDYELLOWMANUAL:
+			statusManualMode= GREENREDMANUAL;
 			if (statusManualMode== statusLedWalkButton3Press)
 				numberFreq= (numberFreq > 0)? numberFreq-1 :numberFreq;
 			ledWalkOperationManualMode();
@@ -47,8 +47,8 @@ void runManualModeFunction()
 			onSingleGreenTraffic1();
 			onSingleRedTraffic2();
 			break;
-		case GREENRED:
-			statusManualMode= YELLOWRED;
+		case GREENREDMANUAL:
+			statusManualMode= YELLOWREDMANUAL;
 			if (statusManualMode== statusLedWalkButton3Press)
 				numberFreq= (numberFreq > 0)? numberFreq-1 :numberFreq;
 			ledWalkOperationManualMode();
@@ -57,8 +57,8 @@ void runManualModeFunction()
 			onSingleYellowTraffic1();
 			onSingleRedTraffic2();
 			break;
-		case YELLOWRED:
-			statusManualMode= REDGREEN;
+		case YELLOWREDMANUAL:
+			statusManualMode= REDGREENMANUAL;
 			if (statusManualMode== statusLedWalkButton3Press)
 				numberFreq= (numberFreq > 0)? numberFreq-1 :numberFreq;
 			ledWalkOperationManualMode();

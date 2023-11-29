@@ -8,10 +8,10 @@
 #ifndef INC_NORMALMODE_H_
 #define INC_NORMALMODE_H_
 
-#define INIT 18
-#define	REDNORMAL 19
-#define GREENNORMAL 20
-#define YELLOWNORMAL 21
+#define INITNORMAL 0
+#define	REDNORMAL 1
+#define GREENNORMAL 2
+#define YELLOWNORMAL 3
 
 extern int statusTraffic1;
 extern int statusTraffic2;

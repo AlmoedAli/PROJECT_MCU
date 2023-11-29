@@ -8,20 +8,27 @@
 #include "deviceDriver7Segment.h"
 #include "physical7Segment.h"
 
-void update7SEGBuffer(int time, int index_traffic)
+int tempDurationLedRed = 7;
+int tempDurationLedGreen = 5;
+int tempDurationLedYellow = 2;
+
+int durationLedRed = 5;
+int durationLedGreen = 3;
+int durationLedYellow = 2;
+
+int led_buffer[3]= {0, 0, 0};
+void update7SEGBuffer(int time, int signalUpdate)
 {
-	switch (index_traffic)
+	switch (signalUpdate)
 	{
-	case 1:
-		led_buffer[0] = time / 10;
-		led_buffer[1] = time % 10;
+	case UPDATETRAFFIC1:
+		led_buffer[0] = time;
 		break;
-	case 2:
-		led_buffer[2] = time / 10;
-		led_buffer[3] = time % 10;
+	case UPDATETRAFFIC2:
+		led_buffer[1] = time;
 		break;
-	case 3:
-		led_buffer[4] = time;
+	case UPDATEMODE:
+		led_buffer[2] = time;
 		break;
 	default:
 		break;
@@ -30,20 +37,20 @@ void update7SEGBuffer(int time, int index_traffic)
 
 void update7SEGBufferTraffic1(int time)
 {
-	update7SEGBuffer(time, 1);
+	update7SEGBuffer(time, UPDATETRAFFIC1);
 }
 
 void update7SEGBufferTraffic2(int time)
 {
-	update7SEGBuffer(time, 2);
+	update7SEGBuffer(time, UPDATETRAFFIC2);
 }
 
 void update7SEGBufferMode(int time)
 {
-	update7SEGBuffer(time, 3);
+	update7SEGBuffer(time, UPDATEMODE);
 }
 
-void displayAll7Seg()
-{
-	Scan7SEG();
-}
+//void displayAll7Seg()
+//{
+//	Scan7SEG();
+//}

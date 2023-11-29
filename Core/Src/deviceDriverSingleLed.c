@@ -11,56 +11,62 @@
 
 void blinkingYELLOW()
 {
-	controlSingleLedTraffic(TRAFFIC1, YELLOWTUNINGMODE);
-	controlSingleLedTraffic(TRAFFIC2, YELLOWTUNINGMODE);
+	controlSingleLedTraffic(TRAFFIC1, YELLOWTUNING);
+	controlSingleLedTraffic(TRAFFIC2, YELLOWTUNING);
 }
 
 void blinkingRED()
 {
-	controlSingleLedTraffic(TRAFFIC1, REDTUNINGMODE);
-	controlSingleLedTraffic(TRAFFIC2, REDTUNINGMODE);
+	controlSingleLedTraffic(TRAFFIC1, REDTUNING);
+	controlSingleLedTraffic(TRAFFIC2, REDTUNING);
 }
+
 void blinkingGREEN()
 {
-	controlSingleLedTraffic(TRAFFIC1, GREENTUNINGMODE);
-	controlSingleLedTraffic(TRAFFIC2, GREENTUNINGMODE);
+	controlSingleLedTraffic(TRAFFIC1, GREENTUNING);
+	controlSingleLedTraffic(TRAFFIC2, GREENTUNING);
 }
+
 void offAllSingLEDs()
 {
 	controlSingleLedTraffic(TRAFFIC1, OFF);
 	controlSingleLedTraffic(TRAFFIC2, OFF);
 }
+
 void onAllSingLEDs()
 {
 	controlSingleLedTraffic(TRAFFIC1, ON);
 	controlSingleLedTraffic(TRAFFIC2, ON);
 }
+
 void onSingleRedTraffic1()
 {
-	controlSingleLedTraffic(TRAFFIC1, REDNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC1, REDNORMAL);
 }
+
 void onSingleYellowTraffic1()
 {
-	controlSingleLedTraffic(TRAFFIC1, YELLOWNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC1, YELLOWNORMAL);
 }
 
 void onSingleGreenTraffic1()
 {
-	controlSingleLedTraffic(TRAFFIC1, GREENNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC1, GREENNORMAL);
 }
 
 void onSingleRedTraffic2()
 {
-	controlSingleLedTraffic(TRAFFIC2, REDNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC2, REDNORMAL);
 }
+
 void onSingleYellowTraffic2()
 {
-	controlSingleLedTraffic(TRAFFIC2, YELLOWNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC2, YELLOWNORMAL);
 }
 
 void onSingleGreenTraffic2()
 {
-	controlSingleLedTraffic(TRAFFIC2, GREENNORMALMODE);
+	controlSingleLedTraffic(TRAFFIC2, GREENNORMAL);
 }
 
 void offSingleRedGreenWalk()

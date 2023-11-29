@@ -9,12 +9,11 @@
 #include "normalMode.h"
 #include <main.h>
 #include "deviceDriverSingleLed.h"
-#include "tuningMode.h"
 #include "softwareTimer.h"
 #include "ledWalk.h"
 
-int statusTraffic1 = INIT;
-int statusTraffic2 = INIT;
+int statusTraffic1 = INITNORMAL;
+int statusTraffic2 = INITNORMAL;
 
 int counterLedRed1;
 int counterLedRed2;
@@ -25,14 +24,14 @@ int counterLedYellow2;
 
 void initStatusNormalMode()
 {
-	statusTraffic1 = INIT;
-	statusTraffic2 = INIT;
+	statusTraffic1 = INITNORMAL;
+	statusTraffic2 = INITNORMAL;
 }
 void runNormalMode()
 {
 	switch (statusTraffic1)
 	{
-	case INIT:
+	case INITNORMAL:
 		counterLedRed1 = durationLedRed;
 		statusTraffic1 = REDNORMAL;
 		onSingleRedTraffic1();
@@ -106,7 +105,7 @@ void runNormalMode()
 	}
 	switch (statusTraffic2)
 	{
-	case INIT:
+	case INITNORMAL:
 		statusTraffic2 = GREENNORMAL;
 		counterLedGreen2 = durationLedGreen;
 		onSingleGreenTraffic2();
@@ -180,8 +179,8 @@ void beginNormalMode()
 	runNormalMode();
 	setTimer2(100);
 	update7SEGBufferMode(1);
-	displayAll7Seg();
-	setTimer4(10);
+//	displayAll7Seg();
+//	setTimer4(10);
 }
 
 void beginWalkNormalMode()

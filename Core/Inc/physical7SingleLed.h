@@ -8,19 +8,19 @@
 #ifndef INC_PHYSICAL7SINGLELED_H_
 #define INC_PHYSICAL7SINGLELED_H_
 
-#define REDNORMALMODE 22
-#define GREENNORMALMODE 23
-#define YELLOWNORMALMODE 24
-#define REDTUNINGMODE 25
-#define GREENTUNINGMODE 26
-#define YELLOWTUNINGMODE 27
-#define OFF 28
-#define ON 29
-#define TRAFFIC1 30
-#define TRAFFIC2 31
-#define OFFLEDWALK 32
-#define ONGREENOFFREDWALK 33
-#define ONREDOFFGREENWALK 34
+#define REDNORMAL 0
+#define GREENNORMAL 1
+#define YELLOWNORMAL 2
+#define REDTUNING 3
+#define GREENTUNING 4
+#define YELLOWTUNING 5
+#define OFF 6
+#define ON 7
+#define TRAFFIC1 8
+#define TRAFFIC2 9
+#define OFFLEDWALK 10
+#define ONGREENOFFREDWALK 11
+#define ONREDOFFGREENWALK 12
 
 void controlSingleLedTraffic(int orderTraffic, int statusLed);
 void controlSingleLedWalk(int statusLed);

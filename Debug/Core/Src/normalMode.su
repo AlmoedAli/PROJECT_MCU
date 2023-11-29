@@ -1,4 +1,4 @@
-normalMode.c:26:6:initStatusNormalMode	4	static
-normalMode.c:31:6:runNormalMode	8	static
-normalMode.c:174:6:beginNormalMode	8	static
-normalMode.c:187:6:beginWalkNormalMode	4	static
+normalMode.c:25:6:initStatusNormalMode	4	static
+normalMode.c:30:6:runNormalMode	8	static
+normalMode.c:173:6:beginNormalMode	8	static
+normalMode.c:186:6:beginWalkNormalMode	4	static

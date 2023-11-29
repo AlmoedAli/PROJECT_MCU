@@ -10,17 +10,7 @@
 #include "deviceDriver7Segment.h"
 #include "deviceDriverSingleLed.h"
 #include "softwareTimer.h"
-#include "normalMode.h"
-#include "physical7SingleLed.h"
 #include "ledWalk.h"
-
-int tempDurationLedRed = 7;
-int tempDurationLedGreen = 5;
-int tempDurationLedYellow = 2;
-
-int durationLedRed = 5;
-int durationLedGreen = 3;
-int durationLedYellow = 2;
 
 #define INITMODE 0
 #define REDTUNING  1
