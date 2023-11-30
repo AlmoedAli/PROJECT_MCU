@@ -14,6 +14,7 @@
 #include "uart.h"
 #include "SCH.h"
 #include "variable.h"
+#include "button.h"
 
 typedef struct
 {
@@ -184,4 +185,103 @@ void task2()
   {
     animationTuningMode();
   }
+}
+void task3()
+{
+	switch (getInputButton())
+	{
+		case BUTTON1SinglePress:
+			modeStatus= NORMALMODE;
+			beginNormalMode();
+			break;
+		case BUTTON1DoublePress:
+			modeStatus= MANUALMODE;
+			beginManualMode();
+			break;
+		case BUTTON1TriplePress:
+			modeStatus= TUNINGMODE;
+			beginTuningMode();
+			break;
+		case BUTTON1LongPress:
+			switch (modeStatus)
+			{
+				case MANUALMODE:
+					runManualModeFunction();
+					break;
+				case TUNINGMODE:
+					runTuningMode();
+					break;
+				case INITMODES:
+					offAllSingLEDs();
+					break;
+				default:
+					break;
+			}
+			break;
+		case BUTTON2SinglePress:
+			switch (modeStatus)
+			{
+				case NORMALMODE:
+					beginNormalMode();
+					break;
+				case MANUALMODE:
+					runManualModeFunction();
+					break;
+				case TUNINGMODE:
+					modifyTuningMode();
+					break;
+				default:
+					break;
+			}
+			break;
+		case BUTTON2DoublePress:
+			switch (modeStatus)
+			{
+				case TUNINGMODE:
+					saveTuningMode();
+					break;
+				case INITMODES:
+					offAllSingLEDs();
+					break;
+				default:
+					break;
+			}
+			break;
+		case BUTTON2LongPress:
+			switch (modeStatus)
+			{
+				case TUNINGMODE:
+					modifyTuningMode();
+					break;
+				case INITMODES:
+					offAllSingLEDs();
+					break;
+				default:
+					break;
+			}
+			break;
+		case BUTTON3SinglePress:
+			switch (modeStatus)
+			{
+				case NORMALMODE:
+					beginWalkNormalMode();
+					ledWalkOperationNormalMode();
+					break;
+				case MANUALMODE:
+					beginWalkManualMode();
+					ledWalkOperationManualMode();
+					break;
+				default:
+					break;
+
+			}
+			break;
+		case BUTTON3DoublePress:
+  modeStatus= INITMODES;
+			offAllSingLEDs();
+			offSingleRedGreenWalk();
+			break;
+		default:
+			break;
+	}
 }

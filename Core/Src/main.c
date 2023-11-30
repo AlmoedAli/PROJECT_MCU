@@ -118,110 +118,112 @@ int main(void)
   setTimer1(1);
   SCH_Add_Task(task1, 1000, 1000, 1);
   SCH_Add_Task(task2, 500, 500, 2);
+  SCH_Add_Task(task3, 1, 1, 3);
 //  setTimer2(100);
 //  setTimer3(50);
 	while (1)
 	{
-		if (flag1== 1) // flag for getInputButton
-		{
-			setTimer1(1);
-			switch (getInputButton())
-			{
-				case BUTTON1SinglePress:
-					modeStatus= NORMALMODE;
-					beginNormalMode();
-					break;
-				case BUTTON1DoublePress:
-					modeStatus= MANUALMODE;
-					beginManualMode();
-					break;
-				case BUTTON1TriplePress:
-					modeStatus= TUNINGMODE;
-					beginTuningMode();
-					break;
-				case BUTTON1LongPress:
-					switch (modeStatus)
-					{
-						case MANUALMODE:
-							runManualModeFunction();
-							break;
-						case TUNINGMODE:
-							runTuningMode();
-							break;
-						case INITMODES:
-							offAllSingLEDs();
-							break;
-						default:
-							break;
-					}
-					break;
-				case BUTTON2SinglePress:
-					switch (modeStatus)
-					{
-						case NORMALMODE:
-							beginNormalMode();
-							break;
-						case MANUALMODE:
-							runManualModeFunction();
-							break;
-						case TUNINGMODE:
-							modifyTuningMode();
-							break;
-						default:
-							break;
-					}
-					break;
-				case BUTTON2DoublePress:
-					switch (modeStatus)
-					{
-						case TUNINGMODE:
-							saveTuningMode();
-							break;
-						case INITMODES:
-							offAllSingLEDs();
-							break;
-						default:
-							break;
-					}
-					break;
-				case BUTTON2LongPress:
-					switch (modeStatus)
-					{
-						case TUNINGMODE:
-							modifyTuningMode();
-							break;
-						case INITMODES:
-							offAllSingLEDs();
-							break;
-						default:
-							break;
-					}
-					break;
-				case BUTTON3SinglePress:
-					switch (modeStatus)
-					{
-						case NORMALMODE:
-							beginWalkNormalMode();
-							ledWalkOperationNormalMode();
-							break;
-						case MANUALMODE:
-							beginWalkManualMode();
-							ledWalkOperationManualMode();
-							break;
-						default:
-							break;
-
-					}
-					break;
-				case BUTTON3DoublePress:
-          modeStatus= INITMODES;
-					offAllSingLEDs();
-					offSingleRedGreenWalk();
-					break;
-				default:
-					break;
-			}
-		}
+		SCH_Dispatch_Tasks();
+//		if (flag1== 1) // flag for getInputButton
+//		{
+////			setTimer1(1);
+//			switch (getInputButton())
+//			{
+//				case BUTTON1SinglePress:
+//					modeStatus= NORMALMODE;
+//					beginNormalMode();
+//					break;
+//				case BUTTON1DoublePress:
+//					modeStatus= MANUALMODE;
+//					beginManualMode();
+//					break;
+//				case BUTTON1TriplePress:
+//					modeStatus= TUNINGMODE;
+//					beginTuningMode();
+//					break;
+//				case BUTTON1LongPress:
+//					switch (modeStatus)
+//					{
+//						case MANUALMODE:
+//							runManualModeFunction();
+//							break;
+//						case TUNINGMODE:
+//							runTuningMode();
+//							break;
+//						case INITMODES:
+//							offAllSingLEDs();
+//							break;
+//						default:
+//							break;
+//					}
+//					break;
+//				case BUTTON2SinglePress:
+//					switch (modeStatus)
+//					{
+//						case NORMALMODE:
+//							beginNormalMode();
+//							break;
+//						case MANUALMODE:
+//							runManualModeFunction();
+//							break;
+//						case TUNINGMODE:
+//							modifyTuningMode();
+//							break;
+//						default:
+//							break;
+//					}
+//					break;
+//				case BUTTON2DoublePress:
+//					switch (modeStatus)
+//					{
+//						case TUNINGMODE:
+//							saveTuningMode();
+//							break;
+//						case INITMODES:
+//							offAllSingLEDs();
+//							break;
+//						default:
+//							break;
+//					}
+//					break;
+//				case BUTTON2LongPress:
+//					switch (modeStatus)
+//					{
+//						case TUNINGMODE:
+//							modifyTuningMode();
+//							break;
+//						case INITMODES:
+//							offAllSingLEDs();
+//							break;
+//						default:
+//							break;
+//					}
+//					break;
+//				case BUTTON3SinglePress:
+//					switch (modeStatus)
+//					{
+//						case NORMALMODE:
+//							beginWalkNormalMode();
+//							ledWalkOperationNormalMode();
+//							break;
+//						case MANUALMODE:
+//							beginWalkManualMode();
+//							ledWalkOperationManualMode();
+//							break;
+//						default:
+//							break;
+//
+//					}
+//					break;
+//				case BUTTON3DoublePress:
+//          modeStatus= INITMODES;
+//					offAllSingLEDs();
+//					offSingleRedGreenWalk();
+//					break;
+//				default:
+//					break;
+//			}
+//		}
 //		if (flag2 == 1) // flag for normalMode
 //		{
 //			setTimer2(100);
@@ -470,6 +472,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+	SCH_Update();
 	runTimer();
 }
 

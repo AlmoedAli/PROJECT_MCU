@@ -35,5 +35,6 @@ void SCH_Init(void);
 
 void task1();
 void task2();
+void task3();
 
 #endif /* INC_SCH_H_ */

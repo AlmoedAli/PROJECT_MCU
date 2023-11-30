@@ -30,7 +30,7 @@ Core/Src/SCH.o: ../Core/Src/SCH.c ../Core/Inc/deviceDriver7Segment.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/deviceDriverSingleLed.h ../Core/Inc/softwareTimer.h \
  ../Core/Inc/ledWalk.h ../Core/Inc/uart.h ../Core/Inc/main.h \
- ../Core/Inc/SCH.h ../Core/Inc/variable.h
+ ../Core/Inc/SCH.h ../Core/Inc/variable.h ../Core/Inc/button.h
 ../Core/Inc/deviceDriver7Segment.h:
 ../Core/Inc/normalMode.h:
 ../Core/Inc/main.h:
@@ -69,3 +69,4 @@ Core/Src/SCH.o: ../Core/Src/SCH.c ../Core/Inc/deviceDriver7Segment.h \
 ../Core/Inc/main.h:
 ../Core/Inc/SCH.h:
 ../Core/Inc/variable.h:
+../Core/Inc/button.h:
