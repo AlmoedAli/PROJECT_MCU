@@ -20,7 +20,8 @@ C_SRCS += \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/system_stm32f4xx.c \
-../Core/Src/tuningMode.c 
+../Core/Src/tuningMode.c \
+../Core/Src/uart.c 
 
 OBJS += \
 ./Core/Src/button.o \
@@ -38,7 +39,8 @@ OBJS += \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
 ./Core/Src/system_stm32f4xx.o \
-./Core/Src/tuningMode.o 
+./Core/Src/tuningMode.o \
+./Core/Src/uart.o 
 
 C_DEPS += \
 ./Core/Src/button.d \
@@ -56,7 +58,8 @@ C_DEPS += \
 ./Core/Src/syscalls.d \
 ./Core/Src/sysmem.d \
 ./Core/Src/system_stm32f4xx.d \
-./Core/Src/tuningMode.d 
+./Core/Src/tuningMode.d \
+./Core/Src/uart.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

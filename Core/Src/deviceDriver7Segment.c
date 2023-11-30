@@ -49,8 +49,3 @@ void update7SEGBufferMode(int time)
 {
 	update7SEGBuffer(time, UPDATEMODE);
 }
-
-//void displayAll7Seg()
-//{
-//	Scan7SEG();
-//}

@@ -1,6 +1,5 @@
-Core/Src/normalMode.o: ../Core/Src/normalMode.c \
- ../Core/Inc/deviceDriver7Segment.h ../Core/Inc/normalMode.h \
- ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+Core/Src/uart.o: ../Core/Src/uart.c ../Core/Inc/uart.h ../Core/Inc/main.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -28,12 +27,9 @@ Core/Src/normalMode.o: ../Core/Src/normalMode.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/deviceDriverSingleLed.h ../Core/Inc/softwareTimer.h \
- ../Core/Inc/ledWalk.h ../Core/Inc/uart.h ../Core/Inc/main.h
+ ../Core/Inc/deviceDriver7Segment.h
 
-../Core/Inc/deviceDriver7Segment.h:
-
-../Core/Inc/normalMode.h:
+../Core/Inc/uart.h:
 
 ../Core/Inc/main.h:
 
@@ -93,12 +89,4 @@ Core/Src/normalMode.o: ../Core/Src/normalMode.c \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Inc/deviceDriverSingleLed.h:
-
-../Core/Inc/softwareTimer.h:
-
-../Core/Inc/ledWalk.h:
-
-../Core/Inc/uart.h:
-
-../Core/Inc/main.h:
+../Core/Inc/deviceDriver7Segment.h:

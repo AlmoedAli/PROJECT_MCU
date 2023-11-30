@@ -48,7 +48,7 @@ void ledWalkOperationManualMode()
 	case REDGREENMANUAL:
 		if (numberFreq <= 0)
 			offSingleRedGreenWalk();
-		else	
+		else
 			onGreenOffRedWalk();
 		break;
 	case YELLOWREDMANUAL:

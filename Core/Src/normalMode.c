@@ -11,6 +11,7 @@
 #include "deviceDriverSingleLed.h"
 #include "softwareTimer.h"
 #include "ledWalk.h"
+#include "uart.h"
 
 int statusTraffic1 = INITNORMAL;
 int statusTraffic2 = INITNORMAL;
@@ -36,6 +37,7 @@ void runNormalMode()
 		statusTraffic1 = REDNORMAL;
 		onSingleRedTraffic1();
 		update7SEGBufferTraffic1(counterLedRed1);
+		printTerminalInfoModeTraffic1();
 		break;
 	case REDNORMAL:
 		if (counterLedRed1 > 0)
@@ -50,11 +52,13 @@ void runNormalMode()
 				ledWalkOperationNormalMode();
 				onSingleGreenTraffic1();
 				update7SEGBufferTraffic1(counterLedGreen1);
+				printTerminalInfoModeTraffic1();
 			}
 			else
 			{
 				onSingleRedTraffic1();
 				update7SEGBufferTraffic1(counterLedRed1);
+				printTerminalInfoModeTraffic1();
 			}
 		}
 		break;
@@ -71,11 +75,13 @@ void runNormalMode()
 				ledWalkOperationNormalMode();
 				onSingleYellowTraffic1();
 				update7SEGBufferTraffic1(counterLedYellow1);
+				printTerminalInfoModeTraffic1();
 			}
 			else
 			{
 				onSingleGreenTraffic1();
 				update7SEGBufferTraffic1(counterLedGreen1);
+				printTerminalInfoModeTraffic1();
 			}
 		}
 		break;
@@ -92,11 +98,13 @@ void runNormalMode()
 				ledWalkOperationNormalMode();
 				onSingleRedTraffic1();
 				update7SEGBufferTraffic1(counterLedRed1);
+				printTerminalInfoModeTraffic1();
 			}
 			else
 			{
 				onSingleYellowTraffic1();
 				update7SEGBufferTraffic1(counterLedYellow1);
+				printTerminalInfoModeTraffic1();
 			}
 		}
 		break;
@@ -110,6 +118,7 @@ void runNormalMode()
 		counterLedGreen2 = durationLedGreen;
 		onSingleGreenTraffic2();
 		update7SEGBufferTraffic2(counterLedGreen2);
+		printTerminalInfoTraffic2();
 		break;
 	case GREENNORMAL:
 		if (counterLedGreen2 > 0)
@@ -121,11 +130,13 @@ void runNormalMode()
 				statusTraffic2 = YELLOWNORMAL;
 				onSingleYellowTraffic2();
 				update7SEGBufferTraffic2(counterLedYellow2);
+				printTerminalInfoTraffic2();
 			}
 			else
 			{
 				onSingleGreenTraffic2();
 				update7SEGBufferTraffic2(counterLedGreen2);
+				printTerminalInfoTraffic2();
 			}
 		}
 		break;
@@ -139,11 +150,13 @@ void runNormalMode()
 				statusTraffic2 = REDNORMAL;
 				onSingleRedTraffic2();
 				update7SEGBufferTraffic2(counterLedRed2);
+				printTerminalInfoTraffic2();
 			}
 			else
 			{
 				onSingleYellowTraffic2();
 				update7SEGBufferTraffic2(counterLedYellow2);
+				printTerminalInfoTraffic2();
 			}
 		}
 		break;
@@ -157,11 +170,13 @@ void runNormalMode()
 				statusTraffic2 = GREENNORMAL;
 				onSingleGreenTraffic2();
 				update7SEGBufferTraffic2(counterLedGreen2);
+				printTerminalInfoTraffic2();
 			}
 			else
 			{
 				onSingleRedTraffic2();
 				update7SEGBufferTraffic2(counterLedRed2);
+				printTerminalInfoTraffic2();
 			}
 		}
 		break;
@@ -175,12 +190,10 @@ void beginNormalMode()
 	numberFreq= 0;
 	offSingleRedGreenWalk();
 	offAllSingLEDs();
+	update7SEGBufferMode(1);
 	initStatusNormalMode();
 	runNormalMode();
 	setTimer2(100);
-	update7SEGBufferMode(1);
-//	displayAll7Seg();
-//	setTimer4(10);
 }
 
 void beginWalkNormalMode()

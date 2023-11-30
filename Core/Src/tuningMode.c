@@ -11,6 +11,7 @@
 #include "deviceDriverSingleLed.h"
 #include "softwareTimer.h"
 #include "ledWalk.h"
+#include "uart.h"
 
 #define INITMODE 0
 #define REDTUNING  1
@@ -30,9 +31,6 @@ void runTuningMode()
             // setTimer3(50);
             update7SEGBufferTraffic1(durationLedRed);
             update7SEGBufferTraffic2(durationLedRed);
-            update7SEGBufferMode(3);
-            // displayAll7Seg();
-            // setTimer4(10);
             break;
         case REDTUNING:
             statusTuningMode= YELLOWTUNING;
@@ -41,9 +39,6 @@ void runTuningMode()
             // setTimer3(50);
             update7SEGBufferTraffic1(durationLedYellow);
             update7SEGBufferTraffic2(durationLedYellow);
-            update7SEGBufferMode(3);
-//            displayAll7Seg();
-//            setTimer4(10);
             break;
         case YELLOWTUNING:
             statusTuningMode= GREENTUNING;
@@ -52,9 +47,6 @@ void runTuningMode()
             // setTimer3(50);
             update7SEGBufferTraffic1(durationLedGreen);
             update7SEGBufferTraffic2(durationLedGreen);
-            update7SEGBufferMode(3);
-            // displayAll7Seg();
-            // setTimer4(10);
             break;
         case GREENTUNING:
             statusTuningMode= REDTUNING;
@@ -63,13 +55,12 @@ void runTuningMode()
             // setTimer3(50);
             update7SEGBufferTraffic1(durationLedRed);
             update7SEGBufferTraffic2(durationLedRed);
-            update7SEGBufferMode(3);
-            // displayAll7Seg();
-            // setTimer4(10);
             break;
         default:
             break;
     }
+    printTerminalInfoModeTraffic1();
+    printTerminalInfoTraffic2();
 }
 
 void initStatusTuningMode()
@@ -82,6 +73,7 @@ void beginTuningMode()
 	numberFreq= 0;
     offSingleRedGreenWalk();
     initStatusTuningMode();
+    update7SEGBufferMode(3);
     runTuningMode();
 }
 

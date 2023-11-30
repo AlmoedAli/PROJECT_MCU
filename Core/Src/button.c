@@ -221,7 +221,7 @@ int getInputButton()
 					case PRESS_STATE:   // button did press
 						state0Button[i]= NORMAL_STATE;
 						eventButtonDrop[i]+= 1;
-						timerNormalState[i]= 20;
+						timerNormalState[i]= 10;
 						break;
 					case NORMAL_STATE:  // button is pressed;
 						state0Button[i]= PRESS_STATE;
