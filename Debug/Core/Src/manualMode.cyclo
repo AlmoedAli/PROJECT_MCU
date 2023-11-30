@@ -1,0 +1,4 @@
+manualMode.c:16:6:initStatusManualMode	1
+manualMode.c:20:6:runManualModeFunction	14
+manualMode.c:75:6:beginManualMode	1
+manualMode.c:83:6:beginWalkManualMode	1
