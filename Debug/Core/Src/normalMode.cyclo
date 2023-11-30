@@ -1,4 +1,4 @@
-normalMode.c:26:6:initStatusNormalMode	1
-normalMode.c:31:6:runNormalMode	27
-normalMode.c:188:6:beginNormalMode	1
-normalMode.c:199:6:beginWalkNormalMode	1
+normalMode.c:27:6:initStatusNormalMode	1
+normalMode.c:32:6:runNormalMode	27
+normalMode.c:189:6:beginNormalMode	1
+normalMode.c:202:6:beginWalkNormalMode	1

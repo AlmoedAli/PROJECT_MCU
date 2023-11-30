@@ -31,7 +31,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/normalMode.h ../Core/Inc/deviceDriverSingleLed.h \
  ../Core/Inc/deviceDriver7Segment.h ../Core/Inc/manualMode.h \
  ../Core/Inc/tuningMode.h ../Core/Inc/ledWalk.h ../Core/Inc/uart.h \
- ../Core/Inc/main.h
+ ../Core/Inc/main.h ../Core/Inc/SCH.h ../Core/Inc/variable.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -71,3 +71,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/ledWalk.h:
 ../Core/Inc/uart.h:
 ../Core/Inc/main.h:
+../Core/Inc/SCH.h:
+../Core/Inc/variable.h:

@@ -32,6 +32,8 @@
 #include "tuningMode.h"
 #include "ledWalk.h"
 #include "uart.h"
+#include "SCH.h"
+#include "variable.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,10 +44,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define INITMODES 5
-#define NORMALMODE 6
-#define MANUALMODE 7
-#define TUNINGMODE 8
+
 
 /* USER CODE END PD */
 
@@ -59,7 +58,7 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
-int modeStatus = INITMODES;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -74,161 +73,7 @@ static void MX_TIM3_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-typedef struct
-{
-  // Pointer to the task
-  void (*pTask)(void);
-  // Delay (ticks) until the function will (next) be run
-  uint32_t Delay;
-  // Interval (ticks) between subsequent runs
-  uint32_t Period;
-  // Incremented (by scheduler) when task is due to execute
-  uint8_t RunMe;
-  // This is a hint to solve the question below
-  uint32_t TaskID;
-} sTask;
 
-// MUST BE ADJUSTED FOR EACH NEW PROJECT
-#define SCH_MAX_TASKS 40
-uint8_t nTask = 0;
-sTask SCH_tasks_G[SCH_MAX_TASKS];
-
-// Ham giam dan thoi gian delay va set RunMe len de execute
-void SCH_Update()
-{
-  if (SCH_tasks_G[0].pTask)
-  {
-    if (SCH_tasks_G[0].Delay == 0)
-    {
-      SCH_tasks_G[0].RunMe += 1;
-    }
-    else
-    {
-      SCH_tasks_G[0].Delay--;
-    }
-  }
-}
-
-// Ham them task vao mang
-void SCH_Add_Task(void(*pFunction), const uint32_t Delay, const uint32_t Period)
-{
-  int index = 0;
-  int total_delay = Delay / 10;
-
-  for (int i = 0; i < SCH_MAX_TASKS; i++)
-  {
-    if (SCH_tasks_G[i].pTask)
-    {
-      if (SCH_tasks_G[i].Delay <= total_delay)
-      {
-        total_delay = total_delay - SCH_tasks_G[i].Delay;
-      }
-      else
-      {
-        index = i;
-        break;
-      }
-    }
-    else
-    {
-      index = i;
-      break;
-    }
-  }
-  for (int i = SCH_MAX_TASKS; i > index; i--)
-  {
-    if (SCH_tasks_G[i - 1].pTask)
-    {
-      SCH_tasks_G[i].pTask = SCH_tasks_G[i - 1].pTask;
-      SCH_tasks_G[i].Delay = SCH_tasks_G[i - 1].Delay;
-      SCH_tasks_G[i].Period = SCH_tasks_G[i - 1].Period;
-      SCH_tasks_G[i].RunMe = SCH_tasks_G[i - 1].RunMe;
-    }
-  }
-  SCH_tasks_G[index].pTask = pFunction;
-  SCH_tasks_G[index].Delay = total_delay;
-  SCH_tasks_G[index].Period = Period;
-  SCH_tasks_G[index].RunMe = 0;
-  if (SCH_tasks_G[index + 1].pTask)
-  {
-    SCH_tasks_G[index + 1].Delay = SCH_tasks_G[index + 1].Delay - total_delay;
-  }
-}
-
-void SCH_Delete(uint8_t index)
-{
-  SCH_tasks_G[index].Delay = 0;
-  SCH_tasks_G[index].Period = 0;
-  SCH_tasks_G[index].RunMe = 0;
-  SCH_tasks_G[index].pTask = 0x0000;
-}
-
-// Xoa task dau tien
-void SCH_Delete_Task(uint8_t index)
-{
-  int final = 0;
-  SCH_Delete(index);
-  for (int i = index; i < SCH_MAX_TASKS; i++)
-  {
-    SCH_tasks_G[i].pTask = SCH_tasks_G[i + 1].pTask;
-    SCH_tasks_G[i].Delay = SCH_tasks_G[i + 1].Delay;
-    SCH_tasks_G[i].Period = SCH_tasks_G[i + 1].Period;
-    SCH_tasks_G[i].RunMe = SCH_tasks_G[i + 1].RunMe;
-    if (SCH_tasks_G[i].pTask == 0x0000)
-    {
-      final = i;
-      break;
-    }
-  }
-  SCH_Delete(final);
-}
-
-// Ham check xem task0 da can execute chua
-void SCH_Dispatch_Tasks(void)
-{
-  if (SCH_tasks_G[0].pTask)
-  {
-    if (SCH_tasks_G[0].RunMe > 0)
-    {
-      (*SCH_tasks_G[0].pTask)();
-      SCH_tasks_G[0].RunMe--;
-
-      if (SCH_tasks_G[0].Period)
-      {
-        SCH_Add_Task(SCH_tasks_G[0].pTask, SCH_tasks_G[0].Period, SCH_tasks_G[0].Period);
-      }
-      SCH_Delete_Task(0);
-    }
-  }
-}
-// Ham xoa tat ca cac task trong array, khien array nhu vua duoc khoi tao
-void SCH_Init(void)
-{
-  uint8_t i;
-  for (i = 0; i < SCH_MAX_TASKS; i++)
-  {
-    SCH_tasks_G[i].Delay = 0;
-    SCH_tasks_G[i].Period = 0;
-    SCH_tasks_G[i].RunMe = 0;
-    SCH_tasks_G[i].pTask = 0x0000;
-  }
-}
-
-void task1()
-{
-  if (modeStatus == NORMALMODE)
-  {
-    runNormalMode();
-    ledWalkOperationNormalMode();
-  }
-}
-void task2()
-{
-  if (modeStatus == TUNINGMODE)
-  {
-    animationTuningMode();
-  }
-}
 /* USER CODE END 0 */
 
 /**
@@ -271,8 +116,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   SCH_Init();
   setTimer1(1);
-  SCH_Add_Task(task1, 1000, 1000);
-  SCH_Add_Task(task2, 500, 500);
+  SCH_Add_Task(task1, 1000, 1000, 1);
+  SCH_Add_Task(task2, 500, 500, 2);
 //  setTimer2(100);
 //  setTimer3(50);
 	while (1)

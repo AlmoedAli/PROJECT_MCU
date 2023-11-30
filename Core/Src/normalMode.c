@@ -12,6 +12,7 @@
 #include "softwareTimer.h"
 #include "ledWalk.h"
 #include "uart.h"
+#include "SCH.h"
 
 int statusTraffic1 = INITNORMAL;
 int statusTraffic2 = INITNORMAL;
@@ -193,7 +194,9 @@ void beginNormalMode()
 	update7SEGBufferMode(1);
 	initStatusNormalMode();
 	runNormalMode();
-	setTimer2(100);
+//	setTimer2(100);
+	SCH_Delete_ID(2);
+	SCH_Add_Task(task2, 1000, 1000, 2);
 }
 
 void beginWalkNormalMode()
