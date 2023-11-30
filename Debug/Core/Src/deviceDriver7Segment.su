@@ -1,5 +1,0 @@
-deviceDriver7Segment.c:11:6:update7SEGBuffer	16	static
-deviceDriver7Segment.c:31:6:update7SEGBufferTraffic1	16	static
-deviceDriver7Segment.c:36:6:update7SEGBufferTraffic2	16	static
-deviceDriver7Segment.c:41:6:update7SEGBufferMode	16	static
-deviceDriver7Segment.c:46:6:displayAll7Seg	8	static

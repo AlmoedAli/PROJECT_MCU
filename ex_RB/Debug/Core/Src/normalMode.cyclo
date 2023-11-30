@@ -1,0 +1,4 @@
+../Core/Src/normalMode.c:26:6:initStatusNormalMode	1
+../Core/Src/normalMode.c:31:6:runNormalMode	27
+../Core/Src/normalMode.c:195:6:beginNormalMode	1
+../Core/Src/normalMode.c:206:6:beginWalkNormalMode	1

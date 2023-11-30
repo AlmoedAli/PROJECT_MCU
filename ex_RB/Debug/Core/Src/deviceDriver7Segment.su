@@ -1,0 +1,4 @@
+../Core/Src/deviceDriver7Segment.c:20:6:update7SEGBuffer	16	static
+../Core/Src/deviceDriver7Segment.c:38:6:update7SEGBufferTraffic1	16	static
+../Core/Src/deviceDriver7Segment.c:43:6:update7SEGBufferTraffic2	16	static
+../Core/Src/deviceDriver7Segment.c:48:6:update7SEGBufferMode	16	static

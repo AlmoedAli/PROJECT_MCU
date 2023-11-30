@@ -1,0 +1,2 @@
+../Core/Src/physicalSingleLed.c:11:6:controlSingleLedTraffic	16	static
+../Core/Src/physicalSingleLed.c:102:6:controlSingleLedWalk	16	static

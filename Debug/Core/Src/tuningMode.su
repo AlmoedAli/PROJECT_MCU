@@ -1,6 +1,0 @@
-tuningMode.c:30:6:runTuningMode	8	static
-tuningMode.c:83:6:initStatusTuningMode	4	static
-tuningMode.c:88:6:beginTuningMode	8	static
-tuningMode.c:94:6:modifyTuningMode	8	static
-tuningMode.c:130:6:saveTuningMode	8	static
-tuningMode.c:162:6:animationTuningMode	8	static
