@@ -195,8 +195,8 @@ void beginNormalMode()
 	initStatusNormalMode();
 	runNormalMode();
 //	setTimer2(100);
-	SCH_Delete_ID(2);
-	SCH_Add_Task(task2, 1000, 1000, 2);
+//	SCH_Delete_ID(2);
+//	SCH_Add_Task(task2, 500, 500, 2);
 }
 
 void beginWalkNormalMode()

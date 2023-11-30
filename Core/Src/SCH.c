@@ -108,13 +108,31 @@ void SCH_Delete(uint8_t index)
 
 void SCH_Delete_ID(uint8_t ID)
 {
-  for(int i = 0; i < SCH_MAX_TASKS; i++)
-  {
+	uint8_t index = 0;
+	uint8_t final = 0;
+
+	for(int i = 0; i < SCH_MAX_TASKS; i++)
+	{
 	  if( SCH_tasks_G[i].TaskID == ID){
 		  SCH_Delete(i);
-		  return;
+		  index = i;
+		  break;
 	  }
-  }
+	}
+	for (int i = index; i < SCH_MAX_TASKS; i++)
+	{
+		SCH_tasks_G[i].pTask = SCH_tasks_G[i + 1].pTask;
+		SCH_tasks_G[i].Delay = SCH_tasks_G[i + 1].Delay;
+		SCH_tasks_G[i].Period = SCH_tasks_G[i + 1].Period;
+		SCH_tasks_G[i].RunMe = SCH_tasks_G[i + 1].RunMe;
+		SCH_tasks_G[i].TaskID = SCH_tasks_G[i + 1].TaskID;
+		if (SCH_tasks_G[i].pTask == 0x0000 && i != index)
+		{
+		  final = i;
+		  break;
+		}
+	}
+	SCH_Delete(final);
 }
 
 // Xoa task dau tien
@@ -173,7 +191,7 @@ void SCH_Init(void)
 
 void task1()
 {
-  if (modeStatus == 6)
+  if (modeStatus == NORMALMODE)
   {
     runNormalMode();
     ledWalkOperationNormalMode();
@@ -181,7 +199,7 @@ void task1()
 }
 void task2()
 {
-  if (modeStatus == 8)
+  if (modeStatus == TUNINGMODE)
   {
     animationTuningMode();
   }
@@ -193,6 +211,7 @@ void task3()
 		case BUTTON1SinglePress:
 			modeStatus= NORMALMODE;
 			beginNormalMode();
+			offSingleRedGreenWalk();
 			break;
 		case BUTTON1DoublePress:
 			modeStatus= MANUALMODE;

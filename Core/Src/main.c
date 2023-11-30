@@ -115,18 +115,18 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   SCH_Init();
-  setTimer1(1);
+//  setTimer1(1);
   SCH_Add_Task(task1, 1000, 1000, 1);
   SCH_Add_Task(task2, 500, 500, 2);
-  SCH_Add_Task(task3, 1, 1, 3);
-//  setTimer2(100);
+  SCH_Add_Task(task3, 10, 10, 3);
+  setTimer2(100);
 //  setTimer3(50);
 	while (1)
 	{
 		SCH_Dispatch_Tasks();
 //		if (flag1== 1) // flag for getInputButton
 //		{
-////			setTimer1(1);
+//			setTimer1(1);
 //			switch (getInputButton())
 //			{
 //				case BUTTON1SinglePress:
@@ -473,7 +473,7 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	SCH_Update();
-	runTimer();
+//	runTimer();
 }
 
 /* USER CODE END 4 */

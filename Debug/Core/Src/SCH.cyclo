@@ -1,10 +1,10 @@
 SCH.c:37:6:SCH_Update	3
 SCH.c:53:6:SCH_Add_Task	7
 SCH.c:100:6:SCH_Delete	1
-SCH.c:109:6:SCH_Delete_ID	3
-SCH.c:121:6:SCH_Delete_Task	3
-SCH.c:142:6:SCH_Dispatch_Tasks	4
-SCH.c:161:6:SCH_Init	2
-SCH.c:174:6:task1	2
-SCH.c:182:6:task2	2
-SCH.c:189:6:task3	24
+SCH.c:109:6:SCH_Delete_ID	6
+SCH.c:139:6:SCH_Delete_Task	3
+SCH.c:160:6:SCH_Dispatch_Tasks	4
+SCH.c:179:6:SCH_Init	2
+SCH.c:192:6:task1	2
+SCH.c:200:6:task2	2
+SCH.c:207:6:task3	24

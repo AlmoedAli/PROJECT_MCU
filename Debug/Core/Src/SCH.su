@@ -1,10 +1,10 @@
 ../Core/Src/SCH.c:37:6:SCH_Update	4	static
 ../Core/Src/SCH.c:53:6:SCH_Add_Task	40	static
 ../Core/Src/SCH.c:100:6:SCH_Delete	16	static
-../Core/Src/SCH.c:109:6:SCH_Delete_ID	24	static
-../Core/Src/SCH.c:121:6:SCH_Delete_Task	24	static
-../Core/Src/SCH.c:142:6:SCH_Dispatch_Tasks	8	static
-../Core/Src/SCH.c:161:6:SCH_Init	16	static
-../Core/Src/SCH.c:174:6:task1	8	static
-../Core/Src/SCH.c:182:6:task2	8	static
-../Core/Src/SCH.c:189:6:task3	8	static
+../Core/Src/SCH.c:109:6:SCH_Delete_ID	32	static
+../Core/Src/SCH.c:139:6:SCH_Delete_Task	24	static
+../Core/Src/SCH.c:160:6:SCH_Dispatch_Tasks	8	static
+../Core/Src/SCH.c:179:6:SCH_Init	16	static
+../Core/Src/SCH.c:192:6:task1	8	static
+../Core/Src/SCH.c:200:6:task2	8	static
+../Core/Src/SCH.c:207:6:task3	8	static
