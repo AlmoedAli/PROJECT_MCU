@@ -22,7 +22,7 @@ void MX_USART1_UART_Init(void)
 
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 96000;
+  huart1.Init.BaudRate = 115200;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -39,35 +39,36 @@ void MX_USART1_UART_Init(void)
 
 }
 
+
 void printTerminalInfoTraffic2()
 {
 	uint8_t str01[]="!7SEG:";
-	uint8_t endline[] = "#\r";
+	uint8_t endline[] = "#\n\n";
 
-	char valueTraffic2[10];
+	char valueTraffic2[20];
 	itoa(led_buffer[1], valueTraffic2, 10);
 
 	HAL_UART_Transmit(&huart1, str01, sizeof(str01), 1000);
-	HAL_UART_Transmit(&huart1, (void*)valueTraffic2, sizeof(valueTraffic2), 1000);
+	HAL_UART_Transmit(&huart1, (void*)valueTraffic2, 2, 1000);
 	HAL_UART_Transmit(&huart1, (void*)endline, sizeof(endline), 1000);
 }
 void printTerminalInfoModeTraffic1()
 {
 	uint8_t str01[]="!7SEG:";
 	uint8_t str2[]= "!MODE:";
-	uint8_t endline[] = "#\r";
+	uint8_t endline[] = "#\n";
 
-	char valueTraffic1[10];
+	char valueTraffic1[20];
 	itoa(led_buffer[0], valueTraffic1, 10);
 
-	char valueMode[10];
+	char valueMode[20];
 	itoa(led_buffer[2], valueMode, 10);
 
 	HAL_UART_Transmit(&huart1, str2, sizeof(str2), 1000);
-	HAL_UART_Transmit(&huart1, (void*)valueMode, sizeof(valueMode), 1000);
+	HAL_UART_Transmit(&huart1, (void*)valueMode, 2, 1000);
 	HAL_UART_Transmit(&huart1, (void*)endline, sizeof(endline), 1000);
 
 	HAL_UART_Transmit(&huart1, str01, sizeof(str01), 1000);
-	HAL_UART_Transmit(&huart1, (void*)valueTraffic1, sizeof(valueTraffic1), 1000);
+	HAL_UART_Transmit(&huart1, (void*)valueTraffic1, 2, 1000);
 	HAL_UART_Transmit(&huart1, (void*)endline, sizeof(endline), 1000);
 }

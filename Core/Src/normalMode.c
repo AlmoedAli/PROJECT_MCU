@@ -12,6 +12,8 @@
 #include "softwareTimer.h"
 #include "ledWalk.h"
 #include "uart.h"
+#include "scho1.h"
+#include "pwm.h"
 
 int statusTraffic1 = INITNORMAL;
 int statusTraffic2 = INITNORMAL;
@@ -56,6 +58,8 @@ void runNormalMode()
 			}
 			else
 			{
+				if (counterLedRed1== 3)
+					buzzerSetup();
 				onSingleRedTraffic1();
 				update7SEGBufferTraffic1(counterLedRed1);
 				printTerminalInfoModeTraffic1();
@@ -188,16 +192,19 @@ void runNormalMode()
 void beginNormalMode()
 {
 	numberFreq= 0;
+	buzzerOff();
 	offSingleRedGreenWalk();
 	offAllSingLEDs();
 	update7SEGBufferMode(1);
 	initStatusNormalMode();
 	runNormalMode();
-	setTimer2(100);
+////	setTimer2(100);
+//	SCH_Delete_ID(1);
+//	SCH_Add_Task(task1, 1000, 1000, 1);
 }
 
 void beginWalkNormalMode()
 {
-	numberFreq= 3;
+	numberFreq= 2;
 	statusLedWalkButton3Press= statusTraffic1;
 }

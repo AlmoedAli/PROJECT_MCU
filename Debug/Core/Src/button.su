@@ -1,3 +1,3 @@
-button.c:16:6:resetAllButton	16	static
-button.c:26:5:checkEventButton	16	static
-button.c:208:5:getInputButton	16	static
+button.c:23:6:resetAllButton	16	static
+button.c:33:6:implementButton	16	static
+button.c:196:6:getInputButton	16	static

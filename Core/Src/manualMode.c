@@ -10,6 +10,8 @@
 #include "deviceDriverSingleLed.h"
 #include "deviceDriver7Segment.h"
 #include "ledWalk.h"
+#include "pwm.h"
+#include "uart.h"
 
 int statusManualMode= INITMANUAL;
 
@@ -27,6 +29,8 @@ void runManualModeFunction()
 			offAllSingLEDs();
 			onSingleRedTraffic1();
 			onSingleGreenTraffic2();
+			update7SEGBufferTraffic1(durationLedRed);
+			update7SEGBufferTraffic2(durationLedGreen);
 			break;
 		case REDGREENMANUAL:
 			statusManualMode= REDYELLOWMANUAL;
@@ -36,6 +40,8 @@ void runManualModeFunction()
 			offAllSingLEDs();
 			onSingleRedTraffic1();
 			onSingleYellowTraffic2();
+			update7SEGBufferTraffic1(durationLedRed);
+			update7SEGBufferTraffic2(durationLedYellow);
 			break;
 		case REDYELLOWMANUAL:
 			statusManualMode= GREENREDMANUAL;
@@ -46,6 +52,8 @@ void runManualModeFunction()
 			offAllSingLEDs();
 			onSingleGreenTraffic1();
 			onSingleRedTraffic2();
+			update7SEGBufferTraffic1(durationLedGreen);
+			update7SEGBufferTraffic2(durationLedRed);
 			break;
 		case GREENREDMANUAL:
 			statusManualMode= YELLOWREDMANUAL;
@@ -56,6 +64,8 @@ void runManualModeFunction()
 			offAllSingLEDs();
 			onSingleYellowTraffic1();
 			onSingleRedTraffic2();
+			update7SEGBufferTraffic1(durationLedYellow);
+			update7SEGBufferTraffic2(durationLedRed);
 			break;
 		case YELLOWREDMANUAL:
 			statusManualMode= REDGREENMANUAL;
@@ -66,22 +76,28 @@ void runManualModeFunction()
 			offAllSingLEDs();
 			onSingleRedTraffic1();
 			onSingleGreenTraffic2();
+			update7SEGBufferTraffic1(durationLedRed);
+			update7SEGBufferTraffic2(durationLedGreen);
 			break;
 		default:
 			break;
 	}
+	printTerminalInfoModeTraffic1();
+	printTerminalInfoTraffic2();
 }
 
 void beginManualMode()
 {
 	numberFreq= 0;
+	buzzerOff();
 	offSingleRedGreenWalk();
+	update7SEGBufferMode(2);
 	initStatusManualMode();
 	runManualModeFunction();
 }
 
 void beginWalkManualMode()
 {
-	numberFreq= 3;
+	numberFreq= 2;
 	statusLedWalkButton3Press= statusManualMode;
 }

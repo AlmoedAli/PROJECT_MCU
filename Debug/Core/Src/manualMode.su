@@ -1,4 +1,4 @@
-manualMode.c:16:6:initStatusManualMode	4	static
-manualMode.c:20:6:runManualModeFunction	8	static
-manualMode.c:75:6:beginManualMode	8	static
-manualMode.c:83:6:beginWalkManualMode	4	static
+manualMode.c:18:6:initStatusManualMode	4	static
+manualMode.c:22:6:runManualModeFunction	8	static
+manualMode.c:89:6:beginManualMode	8	static
+manualMode.c:99:6:beginWalkManualMode	4	static

@@ -32,6 +32,10 @@
 #include "tuningMode.h"
 #include "ledWalk.h"
 #include "uart.h"
+#include "pwm.h"
+//#include "sch.h"
+#include "scho1.h"
+#include "pwm.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,10 +46,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define INITMODES 5
-#define NORMALMODE 6
-#define MANUALMODE 7
-#define TUNINGMODE 8
+
 
 /* USER CODE END PD */
 
@@ -56,18 +57,19 @@
 
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim2;
-TIM_HandleTypeDef htim3;
+//TIM_HandleTypeDef htim3;
+//
+//UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-int modeStatus = INITMODES;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
-static void MX_TIM3_Init(void);
 //static void MX_USART1_UART_Init(void);
+//static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -105,137 +107,28 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
-  MX_TIM3_Init();
   MX_USART1_UART_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
+  SCH_Init();
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(1);
-  setTimer2(100);
-  setTimer3(50);
+  SCH_Add_Task(task1, 1000, 1000, 1);
+  SCH_Add_Task(task2, 500, 500, 2);
+  SCH_Add_Task(task3, 10, 10, 3);
+  SCH_Add_Task(task4, 200, 200, 4);
+
 	while (1)
 	{
-		if (flag1== 1) // flag for getInputButton
-		{
-			setTimer1(1);
-			switch (getInputButton())
-			{
-				case BUTTON1SinglePress:
-					modeStatus= NORMALMODE;
-					beginNormalMode();
-					break;
-				case BUTTON1DoublePress:
-					modeStatus= MANUALMODE;
-					beginManualMode();
-					break;
-				case BUTTON1TriplePress:
-					modeStatus= TUNINGMODE;
-					beginTuningMode();
-					break;
-				case BUTTON1LongPress:
-					switch (modeStatus)
-					{
-						case MANUALMODE:
-							runManualModeFunction();
-							break;
-						case TUNINGMODE:
-							runTuningMode();
-							break;
-						case INITMODES:
-							offAllSingLEDs();
-							break;
-						default:
-							break;
-					}
-					break;
-				case BUTTON2SinglePress:
-					switch (modeStatus)
-					{
-						case NORMALMODE:
-							beginNormalMode();
-							break;
-						case MANUALMODE:
-							runManualModeFunction();
-							break;
-						case TUNINGMODE:
-							modifyTuningMode();
-							break;
-						default:
-							break;
-					}
-					break;
-				case BUTTON2DoublePress:
-					switch (modeStatus)
-					{
-						case TUNINGMODE:
-							saveTuningMode();
-							break;
-						case INITMODES:
-							offAllSingLEDs();
-							break;
-						default:
-							break;
-					}
-					break;
-				case BUTTON2LongPress:
-					switch (modeStatus)
-					{
-						case TUNINGMODE:
-							modifyTuningMode();
-							break;
-						case INITMODES:
-							offAllSingLEDs();
-							break;
-						default:
-							break;
-					}
-					break;
-				case BUTTON3SinglePress:
-					switch (modeStatus)
-					{
-						case NORMALMODE:
-							beginWalkNormalMode();
-							ledWalkOperationNormalMode();
-							break;
-						case MANUALMODE:
-							beginWalkManualMode();
-							ledWalkOperationManualMode();
-							break;
-						default:
-							break;
-
-					}
-					break;
-				case BUTTON3DoublePress:
-          modeStatus= INITMODES;
-					offAllSingLEDs();
-					offSingleRedGreenWalk();
-					break;
-				default:
-					break;
-			}
-		}
-		if (flag2 == 1) // flag for normalMode
-		{
-			setTimer2(100);
-			if (modeStatus == NORMALMODE)
-			{
-				runNormalMode();
-				ledWalkOperationNormalMode();
-			}
-		}
-		if (flag3 == 1) // flag for animationTuningMode
-		{
-			setTimer3(50);
-			if (modeStatus== TUNINGMODE)
-			{
-				animationTuningMode();
-			}
-		}
+    SCH_Dispatch_Tasks();
+//    buzzerRun();
+//    HAL_Delay(2000);
+//    buzzerOff();
+//    HAL_Delay(2000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -332,66 +225,92 @@ static void MX_TIM2_Init(void)
   * @param None
   * @retval None
   */
-static void MX_TIM3_Init(void)
-{
-
-  /* USER CODE BEGIN TIM3_Init 0 */
-
-  /* USER CODE END TIM3_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-
-  /* USER CODE BEGIN TIM3_Init 1 */
-
-  /* USER CODE END TIM3_Init 1 */
-  htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 7;
-  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 299;
-  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 200;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM3_Init 2 */
-
-  /* USER CODE END TIM3_Init 2 */
-  HAL_TIM_MspPostInit(&htim3);
-
-}
+//static void MX_TIM3_Init(void)
+//{
+//
+//  /* USER CODE BEGIN TIM3_Init 0 */
+////
+//  /* USER CODE END TIM3_Init 0 */
+//
+//  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+//  TIM_MasterConfigTypeDef sMasterConfig = {0};
+//  TIM_OC_InitTypeDef sConfigOC = {0};
+//
+//  /* USER CODE BEGIN TIM3_Init 1 */
+////
+//  /* USER CODE END TIM3_Init 1 */
+//  htim3.Instance = TIM3;
+//  htim3.Init.Prescaler = 7999;
+//  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+//  htim3.Init.Period = 9;
+//  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+//  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+//  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+//  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//  if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+//  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+//  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+//  sConfigOC.Pulse = 3;
+//  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+//  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+//  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//  /* USER CODE BEGIN TIM3_Init 2 */
+////
+//  /* USER CODE END TIM3_Init 2 */
+//  HAL_TIM_MspPostInit(&htim3);
+//
+//}
 
 /**
   * @brief USART1 Initialization Function
   * @param None
   * @retval None
   */
-
+//static void MX_USART1_UART_Init(void)
+//{
+//
+//  /* USER CODE BEGIN USART1_Init 0 */
+//
+//  /* USER CODE END USART1_Init 0 */
+//
+//  /* USER CODE BEGIN USART1_Init 1 */
+//
+//  /* USER CODE END USART1_Init 1 */
+//  huart1.Instance = USART1;
+//  huart1.Init.BaudRate = 115200;
+//  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+//  huart1.Init.StopBits = UART_STOPBITS_1;
+//  huart1.Init.Parity = UART_PARITY_NONE;
+//  huart1.Init.Mode = UART_MODE_TX_RX;
+//  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+//  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+//  if (HAL_UART_Init(&huart1) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//  /* USER CODE BEGIN USART1_Init 2 */
+//
+//  /* USER CODE END USART1_Init 2 */
+//
+//}
 
 /**
   * @brief GPIO Initialization Function
@@ -406,6 +325,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, segA_Pin|segB_Pin|segC_Pin|segD_Pin
@@ -420,7 +340,7 @@ static void MX_GPIO_Init(void)
                           |en1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, WALKGREEN_Pin|WALKRED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, WALKGREEN_Pin|WALKRED_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : segA_Pin segB_Pin segC_Pin segD_Pin
                            segE_Pin segF_Pin segG_Pin */
@@ -456,8 +376,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : button1_Pin button2_Pin button3_Pin */
-  GPIO_InitStruct.Pin = button1_Pin|button2_Pin|button3_Pin;
+  /*Configure GPIO pin : button2_Pin */
+  GPIO_InitStruct.Pin = button2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(button2_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : button1_Pin button3_Pin */
+  GPIO_InitStruct.Pin = button1_Pin|button3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -467,7 +393,8 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	runTimer();
+//	 runTimer();
+  SCH_Update();
 }
 
 /* USER CODE END 4 */

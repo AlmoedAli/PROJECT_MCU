@@ -1,5 +1,10 @@
 #include "button.h"
 #include "main.h"
+#include "deviceDriverSingleLed.h"
+#include "manualMode.h"
+#include "normalMode.h"
+#include "tuningMode.h"
+#include "ledWalk.h"
 
 GPIO_TypeDef* buttonPort[3]= {button1_GPIO_Port, button2_GPIO_Port, button3_GPIO_Port};
 uint16_t buttonPin[3]= {button1_Pin, button2_Pin, button3_Pin};
@@ -13,17 +18,19 @@ int timerNormalState[3]= {0, 0, 0};
 int eventButtonPressed[3]= {0, 0, 0};
 int eventButtonDrop[3]= {0, 0, 0};
 
+int modeStatus = INITMODES;
+
 void resetAllButton()
 {
-	for (int i=0 ; i < 3; i++)
-	{
-		eventButtonDrop[i]= 0;
-		eventButtonPressed[i]= 0;
-		timerNormalState[i]= 0;
-	}
+    for (int i= 0; i < 3; i++)
+    {
+    	eventButtonPressed[i]= 0;
+    	eventButtonDrop[i]= 0;
+    	timerNormalState[i]= 0;
+    }
 }
 
-int checkEventButton(int indexButton)
+void implementButton(int indexButton)
 {
 	switch (indexButton)
 	{
@@ -31,63 +38,62 @@ int checkEventButton(int indexButton)
 			switch (eventButtonPressed[indexButton])
 			{
 			case 0:
-				switch (eventButtonDrop[indexButton])
+				if (eventButtonDrop[indexButton]== 0)
 				{
-				case 0:
-					resetAllButton();
-					return BUTTON1LongPress;
-					break;
-				case 1:
-					resetAllButton();
-					return NOBUTTON;
-					break;
-				default:
-					break;
+					// BUTTON1LONGPress
+					switch (modeStatus)
+					{
+						case MANUALMODE:
+							runManualModeFunction();
+							break;
+						case TUNINGMODE:
+							runTuningMode();
+							break;
+						default:
+							break;
+					}
 				}
 				break;
 			case 1:
-				switch (eventButtonDrop[indexButton])
+				if (eventButtonDrop[indexButton]== 0)
 				{
-				case 0:
-					resetAllButton();
-					return BUTTON1LongPress;
-					break;
-				case 1:
-					resetAllButton();
-					return BUTTON1SinglePress;
-					break;
-				default:
-					break;
+					// BUtton1LongPress
+					switch (modeStatus)
+					{
+						case MANUALMODE:
+							runManualModeFunction();
+							break;
+						case TUNINGMODE:
+							runTuningMode();
+							break;
+						default:
+							break;
+					}
+				}
+				else
+				{
+					if (eventButtonDrop[indexButton]== 1)
+					{
+						// BUTTON1SinglePress
+						modeStatus= NORMALMODE;
+						beginNormalMode();
+					}
 				}
 				break;
 			case 2:
-				switch (eventButtonDrop[indexButton])
+				if (eventButtonDrop[indexButton]== 1 || eventButtonDrop[indexButton]== 2)
 				{
-				case 1:
-					resetAllButton();
-					return BUTTON1DoublePress;
-					break;
-				case 2:
-					resetAllButton();
-					return BUTTON1DoublePress;
-					break;
-				default:
-					break;
+					// BUTTON1DoublePress
+					modeStatus= MANUALMODE;
+					beginManualMode();
 				}
 				break;
 			case 3:
-				switch (eventButtonDrop[indexButton])
+				if (eventButtonDrop[indexButton]== 2 || eventButtonDrop[indexButton]== 3)
 				{
-				case 2:
-					resetAllButton();
-					return BUTTON1TriplePress;
-					break;
-				case 3:
-					resetAllButton();
-					return BUTTON1TriplePress;
-					break;
-				default:
-					break;
+					// BUTTON1TriplePress
+					modeStatus= TUNINGMODE;
+					beginTuningMode();
 				}
 				break;
 			default:
@@ -98,48 +104,48 @@ int checkEventButton(int indexButton)
 			switch (eventButtonPressed[indexButton])
 			{
 			case 0:
-				switch (eventButtonDrop[indexButton])
+				if (eventButtonDrop[indexButton]== 0)
 				{
-				case 0:
-					resetAllButton();
-					return BUTTON2LongPress;
-					break;
-				case 1:
-					resetAllButton();
-					return NOBUTTON;
-					break;
-				default:
-					break;
+					// BUTTON2LongPress
+					if (modeStatus== TUNINGMODE)
+						modifyTuningMode();
 				}
 				break;
 			case 1:
-				switch (eventButtonDrop[indexButton])
+				if (eventButtonDrop[indexButton]== 0)
 				{
-				case 0:
-					resetAllButton();
-					return BUTTON2LongPress;
-					break;
-				case 1:
-					resetAllButton();
-					return BUTTON2SinglePress;
-					break;
-				default:
-					break;
+					// BUTTON2LongPress
+					if (modeStatus== TUNINGMODE)
+						modifyTuningMode();
+				}
+				else
+				{
+					if (eventButtonDrop[indexButton]== 1)
+					{
+						//BUTTON2SinglePress
+						switch (modeStatus)
+						{
+							case NORMALMODE:
+								beginNormalMode();
+								break;
+							case MANUALMODE:
+								runManualModeFunction();
+								break;
+							case TUNINGMODE:
+								modifyTuningMode();
+								break;
+							default:
+								break;
+						}
+					}
 				}
 				break;
 			case 2:
-				switch (eventButtonDrop[indexButton])
+				if (eventButtonDrop[indexButton]== 1 || eventButtonDrop[indexButton]== 2)
 				{
-				case 1:
-					resetAllButton();
-					return BUTTON2DoublePress;
-					break;
-				case 2:
-					resetAllButton();
-					return BUTTON2DoublePress;
-					break;
-				default:
-					break;
+					// BUTTON2DoublePress
+					if (modeStatus== TUNINGMODE)
+						saveTuningMode();
 				}
 				break;
 			default:
@@ -149,49 +155,32 @@ int checkEventButton(int indexButton)
 		case 2:
 			switch (eventButtonPressed[indexButton])
 			{
-			case 0:
-				switch (eventButtonDrop[indexButton])
-				{
-				case 0:
-					resetAllButton();
-					return BUTTON3LongPress;
-					break;
-				case 1:
-					resetAllButton();
-					return NOBUTTON;
-					break;
-				default:
-					break;
-				}
-				break;
 			case 1:
-				switch (eventButtonDrop[indexButton])
+				if (eventButtonDrop[indexButton]== 1)
 				{
-				case 0:
-					resetAllButton();
-					return BUTTON3LongPress;
-					break;
-				case 1:
-					resetAllButton();
-					return BUTTON3SinglePress;
-					break;
-				default:
-					break;
+					// BUTTON3SinglePress
+					switch (modeStatus)
+					{
+						case NORMALMODE:
+							beginWalkNormalMode();
+							ledWalkOperationNormalMode();
+							break;
+						case MANUALMODE:
+							beginWalkManualMode();
+							ledWalkOperationManualMode();
+							break;
+						default:
+							break;
+					}
 				}
 				break;
 			case 2:
-				switch (eventButtonDrop[indexButton])
+				if (eventButtonDrop[indexButton]== 1 || eventButtonDrop[indexButton]== 2)
 				{
-				case 1:
-					resetAllButton();
-					return BUTTON3DoublePress;
-					break;
-				case 2:
-					resetAllButton();
-					return BUTTON3DoublePress;
-					break;
-				default:
-					break;
+					//  BUTTON3DoublePress
+					modeStatus= INITMODES;
+					offAllSingLEDs();
+					offSingleRedGreenWalk();
 				}
 				break;
 			default:
@@ -199,13 +188,12 @@ int checkEventButton(int indexButton)
 			}
 			break;
 		default:
-			resetAllButton();
-			return NOBUTTON;
 			break;
 	}
+	resetAllButton();
 }
 
-int getInputButton()
+void getInputButton()
 {
 	for (int i= 0; i < 3; i++)
 	{
@@ -221,7 +209,7 @@ int getInputButton()
 					case PRESS_STATE:   // button did press
 						state0Button[i]= NORMAL_STATE;
 						eventButtonDrop[i]+= 1;
-						timerNormalState[i]= 10;
+						timerNormalState[i]= 15;
 						break;
 					case NORMAL_STATE:  // button is pressed;
 						state0Button[i]= PRESS_STATE;
@@ -230,7 +218,6 @@ int getInputButton()
 						break;
 					default:
 						break;
-
 				}
 			}
 			else
@@ -242,7 +229,7 @@ int getInputButton()
 						timerNormalState[i]--;
 						if (timerNormalState[i] <= 0)
 						{
-							return checkEventButton(i);
+							implementButton(i);
 						}
 					}
 				}
@@ -257,13 +244,12 @@ int getInputButton()
 								timerLongPress[i]= 300;
 							if (i== 1)
 								timerLongPress[i]= 20;
-							return checkEventButton(i);		
+							implementButton(i);
 						}
 					}
 				}
 			}
 		}
 	}
-	return NOBUTTON;
 }
 

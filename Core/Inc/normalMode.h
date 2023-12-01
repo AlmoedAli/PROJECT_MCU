@@ -15,6 +15,7 @@
 
 extern int statusTraffic1;
 extern int statusTraffic2;
+extern int counterLedRed1;
 
 void beginNormalMode();
 void runNormalMode();

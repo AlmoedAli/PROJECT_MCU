@@ -1,3 +1,3 @@
 uart.c:14:6:MX_USART1_UART_Init	8	static
-uart.c:42:6:printTerminalInfoTraffic2	32	static
-uart.c:54:6:printTerminalInfoModeTraffic1	56	static
+uart.c:43:6:printTerminalInfoTraffic2	40	static
+uart.c:55:6:printTerminalInfoModeTraffic1	72	static

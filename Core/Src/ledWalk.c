@@ -10,6 +10,7 @@
 #include "deviceDriverSingleLed.h"
 #include "manualMode.h"
 #include "normalMode.h"
+#include "pwm.h"
 
 int numberFreq;
 int statusLedWalkButton3Press;
@@ -20,15 +21,30 @@ void ledWalkOperationNormalMode()
     {
     case REDNORMAL:
 		if (numberFreq <= 0)
+		{
+			buzzerOff();
 			offSingleRedGreenWalk();
+		}
 		else
+		{
 			onGreenOffRedWalk();
+			if (counterLedRed1 <= 3)
+			{
+				buzzerBegin();
+			}
+		}
         break;
     case GREENNORMAL:
 		if (numberFreq <= 0)
+		{
 			offSingleRedGreenWalk();
+			buzzerOff();
+		}
 		else
+		{
 			onRedOffGreenWalk();
+			buzzerOff();
+		}
         break;
     case YELLOWNORMAL:
 		if (numberFreq <= 0)
@@ -55,7 +71,7 @@ void ledWalkOperationManualMode()
 		if (numberFreq <= 0)
 			offSingleRedGreenWalk();
 		else
-			onRedOffGreenWalk();
+			onGreenOffRedWalk();
 		break;
 	case GREENREDMANUAL:
 		if (numberFreq <= 0)
@@ -68,6 +84,7 @@ void ledWalkOperationManualMode()
 			offSingleRedGreenWalk();
 		else
 			onGreenOffRedWalk();
+
 		break;
 	default:
 		break;

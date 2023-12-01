@@ -11,22 +11,13 @@
 #define NORMAL_STATE 1
 #define PRESS_STATE 0
 
-#define BUTTON1SinglePress 2
-#define BUTTON1DoublePress 3
-#define BUTTON1TriplePress 4
-#define BUTTON1LongPress 5
+#define INITMODES 2
+#define NORMALMODE 3
+#define MANUALMODE 4
+#define TUNINGMODE 5
 
-#define BUTTON2SinglePress 6
-#define BUTTON2DoublePress 7
-#define BUTTON2LongPress 8
+extern int modeStatus;
 
-#define BUTTON3SinglePress 9
-#define BUTTON3DoublePress 10
-#define BUTTON3LongPress 11
-
-#define NOBUTTON 12
-
-int getInputButton();
-void resetAllButton();
+void getInputButton();
 
 #endif /* INC_BUTTON_H_ */

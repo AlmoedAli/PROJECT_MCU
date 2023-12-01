@@ -1,5 +1,4 @@
-Core/Src/normalMode.o: ../Core/Src/normalMode.c \
- ../Core/Inc/deviceDriver7Segment.h ../Core/Inc/normalMode.h \
+Core/Src/scho1.o: ../Core/Src/scho1.c ../Core/Inc/scho1.h \
  ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -28,13 +27,12 @@ Core/Src/normalMode.o: ../Core/Src/normalMode.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/deviceDriverSingleLed.h ../Core/Inc/softwareTimer.h \
- ../Core/Inc/ledWalk.h ../Core/Inc/uart.h ../Core/Inc/main.h \
- ../Core/Inc/scho1.h ../Core/Inc/pwm.h
+ ../Core/Inc/deviceDriver7Segment.h ../Core/Inc/normalMode.h \
+ ../Core/Inc/main.h ../Core/Inc/deviceDriverSingleLed.h \
+ ../Core/Inc/softwareTimer.h ../Core/Inc/ledWalk.h ../Core/Inc/uart.h \
+ ../Core/Inc/button.h ../Core/Inc/tuningMode.h ../Core/Inc/pwm.h
 
-../Core/Inc/deviceDriver7Segment.h:
-
-../Core/Inc/normalMode.h:
+../Core/Inc/scho1.h:
 
 ../Core/Inc/main.h:
 
@@ -94,6 +92,12 @@ Core/Src/normalMode.o: ../Core/Src/normalMode.c \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
+../Core/Inc/deviceDriver7Segment.h:
+
+../Core/Inc/normalMode.h:
+
+../Core/Inc/main.h:
+
 ../Core/Inc/deviceDriverSingleLed.h:
 
 ../Core/Inc/softwareTimer.h:
@@ -102,8 +106,8 @@ Core/Src/normalMode.o: ../Core/Src/normalMode.c \
 
 ../Core/Inc/uart.h:
 
-../Core/Inc/main.h:
+../Core/Inc/button.h:
 
-../Core/Inc/scho1.h:
+../Core/Inc/tuningMode.h:
 
 ../Core/Inc/pwm.h:

@@ -14,6 +14,9 @@ C_SRCS += \
 ../Core/Src/normalMode.c \
 ../Core/Src/physical7Segment.c \
 ../Core/Src/physicalSingleLed.c \
+../Core/Src/pwm.c \
+../Core/Src/sch.c \
+../Core/Src/scho1.c \
 ../Core/Src/softwareTimer.c \
 ../Core/Src/stm32f4xx_hal_msp.c \
 ../Core/Src/stm32f4xx_it.c \
@@ -33,6 +36,9 @@ OBJS += \
 ./Core/Src/normalMode.o \
 ./Core/Src/physical7Segment.o \
 ./Core/Src/physicalSingleLed.o \
+./Core/Src/pwm.o \
+./Core/Src/sch.o \
+./Core/Src/scho1.o \
 ./Core/Src/softwareTimer.o \
 ./Core/Src/stm32f4xx_hal_msp.o \
 ./Core/Src/stm32f4xx_it.o \
@@ -52,6 +58,9 @@ C_DEPS += \
 ./Core/Src/normalMode.d \
 ./Core/Src/physical7Segment.d \
 ./Core/Src/physicalSingleLed.d \
+./Core/Src/pwm.d \
+./Core/Src/sch.d \
+./Core/Src/scho1.d \
 ./Core/Src/softwareTimer.d \
 ./Core/Src/stm32f4xx_hal_msp.d \
 ./Core/Src/stm32f4xx_it.d \

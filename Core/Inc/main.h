@@ -90,10 +90,10 @@ void Error_Handler(void);
 #define WALKGREEN_GPIO_Port GPIOD
 #define WALKRED_Pin GPIO_PIN_10
 #define WALKRED_GPIO_Port GPIOD
+#define button2_Pin GPIO_PIN_8
+#define button2_GPIO_Port GPIOC
 #define button1_Pin GPIO_PIN_8
 #define button1_GPIO_Port GPIOA
-#define button2_Pin GPIO_PIN_9
-#define button2_GPIO_Port GPIOA
 #define button3_Pin GPIO_PIN_10
 #define button3_GPIO_Port GPIOA
 #define RED2_Pin GPIO_PIN_3

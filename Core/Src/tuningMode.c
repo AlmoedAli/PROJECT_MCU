@@ -12,6 +12,7 @@
 #include "softwareTimer.h"
 #include "ledWalk.h"
 #include "uart.h"
+#include "pwm.h"
 
 #define INITMODE 0
 #define REDTUNING  1
@@ -68,9 +69,18 @@ void initStatusTuningMode()
     statusTuningMode= INITMODE;
 }
 
+void setValueAllOfTraffic()
+{
+	tempDurationLedGreen = durationLedGreen;
+	tempDurationLedRed = durationLedRed;
+	tempDurationLedYellow = durationLedYellow;
+}
+
 void beginTuningMode()
 {
 	numberFreq= 0;
+	buzzerOff();
+	setValueAllOfTraffic();
     offSingleRedGreenWalk();
     initStatusTuningMode();
     update7SEGBufferMode(3);
@@ -111,6 +121,8 @@ void modifyTuningMode()
         default:
             break;
     }
+    printTerminalInfoModeTraffic1();
+	printTerminalInfoTraffic2();
 }
 
 void saveTuningMode()
@@ -134,12 +146,16 @@ void saveTuningMode()
                 tempDurationLedYellow = durationLedYellow;
                 break;
         }
+        uint8_t str[]="!SAVE_VALUE_FAIL#\n\n";
+		HAL_UART_Transmit(&huart1, str, sizeof(str), 1000);
     }
     else
     {
         durationLedGreen = tempDurationLedGreen;
         durationLedRed = tempDurationLedRed;
         durationLedYellow = tempDurationLedYellow;
+        uint8_t str[]="!SAVE_VALUE_PASS#\n\n";
+        HAL_UART_Transmit(&huart1, str, sizeof(str), 1000);
     }
 }
 
