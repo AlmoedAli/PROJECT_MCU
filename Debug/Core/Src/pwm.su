@@ -1,0 +1,5 @@
+../Core/Src/pwm.c:17:6:MX_TIM3_Init	64	static
+../Core/Src/pwm.c:71:6:buzzerSetup	4	static
+../Core/Src/pwm.c:77:6:buzzerRun	4	static
+../Core/Src/pwm.c:90:6:buzzerBegin	4	static
+../Core/Src/pwm.c:96:6:buzzerOff	4	static

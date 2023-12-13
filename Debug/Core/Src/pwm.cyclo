@@ -1,0 +1,5 @@
+pwm.c:17:6:MX_TIM3_Init	6
+pwm.c:71:6:buzzerSetup	1
+pwm.c:77:6:buzzerRun	4
+pwm.c:90:6:buzzerBegin	1
+pwm.c:96:6:buzzerOff	1
